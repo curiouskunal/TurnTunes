@@ -7,12 +7,12 @@ var searchSongs = function (query) {
         },
         success: function (response) {
           usersRef.push({
-            'song': query,
+            'song': response.tracks.items[0].name + " - " + response.tracks.items[0].artists[0].name,
             'url': response.tracks.items[0].preview_url,
+            'img': response.tracks.items[0].album.images[2].url,
+            'album': response.tracks.items[0].album.name,
             'votes': 1
           });
-          console.log(response);
-          console.log(response.tracks.items[0].preview_url);
         }
     });
 };
