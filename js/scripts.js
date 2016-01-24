@@ -12,7 +12,12 @@ usersRef.on('child_added', function(childSnapshot) {
   var song = toTitleCase(childSnapshot.val().song);
   var votes = childSnapshot.val().votes;
   songQueue.enqueue(song);
+  var length = songQueue.getLength();
+  if (length == 1) {
+  	$("#empty-plist").hide();
+  }
   $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'</li>');
+  
 });
 
 // Main Page UI functions
