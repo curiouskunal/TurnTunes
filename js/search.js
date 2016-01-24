@@ -4,7 +4,9 @@
 // Helper function to display JavaScript value on HTML page.
 function showResponse(response) {
     var responseString = JSON.stringify(response, '', 2);
-    document.getElementById('response').innerHTML += responseString;
+    var vidID = response.items[0].id.videoId;
+    $('.play-yt').append('<iframe align="center" width="100%" id="yt-song" src="http://www.youtube.com/embed/' + vidID + '?modestbranding=1&autoplay=1&controls=0&fs=0&showinfo=0" frameborder="0"></iframe>');
+    //document.getElementById('response').innerHTML += responseString;
 }
 
 // Called automatically when JavaScript client library is loaded.
