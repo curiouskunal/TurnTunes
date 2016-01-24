@@ -11,21 +11,14 @@ function toTitleCase(str) {
 usersRef.on('child_added', function(childSnapshot) {
   var song = toTitleCase(childSnapshot.val().song);
   var votes = childSnapshot.val().votes;
-  songQueue.enqueue(song);
-  var length = songQueue.getLength();
-  if (length == 1) {
-  	$("#empty-plist").hide();
-  }
+  //songQueue.enqueue(song);
+
   $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'<i class="upvote fa fa-thumbs-up" align="right"></i</li>');
   
 });
 
 // Main Page UI functions
 $("#join-btn").click(function() {
-
-
-
-
  if ( $(".join-input").css('visibility') == 'hidden' )
     $(".join-input").css('visibility','visible').focus();
   else
@@ -57,6 +50,7 @@ $('.add-input').bind("enterKey",function(e){
      'song': song,
      'votes': 1
    });
+   search(song);
    $(this).val("");
 });
 

@@ -24,12 +24,13 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1 class="alt">Now Playing</h1>
-                 <pre id="response"></pre>
+                 <!-- <pre id="response"></pre> -->
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 play-yt">
+              <div id='player'></div>
                 <!-- <iframe align="center" width="100%" id="yt-song" src="http://www.youtube.com/embed" + balh + "?modestbranding=1&autoplay=1&controls=0&fs=0&showinfo=0" frameborder="0"></iframe> -->
             </div>
         </div>
@@ -51,7 +52,7 @@
 
 
 
-                  <!-- 
+                  <!--
                   <li class="list-group-item">
                     <span class="label label-default label-pill pull-xs-right">2</span>
                     Jumpman
@@ -82,7 +83,49 @@
 
 
     </div>
+    <script>
+      var player;
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
 
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: '',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          player.loadVideoById(songQueue.dequeue(), 0, "large");
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
     <!--scripts loaded here from cdn for performance -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
