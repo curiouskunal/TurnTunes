@@ -22,7 +22,7 @@ body {
 body {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
     background-color: #282828;
-    color: #d3d3d3;
+    color: #fff;
     webkit-tap-highlight-color: #222;
 }
 
@@ -43,6 +43,10 @@ a {
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
+}
+
+.alt {
+    color: #D24D57; 
 }
 
 a:hover,
@@ -539,6 +543,41 @@ img::-moz-selection {
     width: 50%;
     border-radius: 60px;
     display:none;
+}
+
+.add-input {
+    border: 2px solid #D24D57;
+    font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
+    font-size: inherit;
+    color: #fff;
+    background-color:rgba(0,0,0,0.6);
+    cursor: pointer;
+    padding: 15px 30px;
+    display: inline-block;
+    margin: 15px 0;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.brand {
+    font-family: 'Ruthless', cursive;
+    font-size: 4rem;
+    text-transform: none;
+    color: #fff;
+}
+
+.list-group {
+    width: 500px;
+    color: #fff;
+}
+
+.list-group-item {
+    background-color:rgba(0,0,0,0.6);
+    border: 2px solid #D24D57;
 }
 
 
