@@ -1,5 +1,21 @@
-var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/kokulsparty');
+var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/butter');
+var songQueue = new Queue(); // The class was taken from this site http://code.stephenmorley.org/javascript/queues/
 
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
+
+//Firebase data functions
+usersRef.on('child_added', function(childSnapshot) {
+  var song = toTitleCase(childSnapshot.val().song);
+  var votes = childSnapshot.val().votes;
+  songQueue.enqueue(song);
+  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'</li>');
+});
+
+// Main Page UI functions
 $("#join-btn").click(function() {
  $(".join-input").fadeToggle();
 });
@@ -7,28 +23,28 @@ $("#join-btn").click(function() {
 $('.join-input').keypress(function (e) {
   if (e.which == 13) {
     dest = $('.join-input').val();
-    window.location.href =  dest + ".html";
+    window.location.href =  dest.toLowerCase() + ".html";
     return false;
   }
 });
 
 $('#host-btn').on('click', function() {
-  var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/kokulsparty');
+  usersRef.remove();
+  window.location.href =  "butter.html"; //Hardcoded into butter for now
+  return false;
 });
 
+//Playlist page UI functions
 $('.add-input').bind("enterKey",function(e){
-   var song = $(this).val();
-  //  if (updateVotes(song)) {
-  //    console.log("why am i here?");
-     usersRef.push({
-       'song': song,
-       'votes': 1
-     });
-   //}
+   var song = $(this).val().toLowerCase();
+   usersRef.push({
+     'song': song,
+     'votes': 1
+   });
    $(this).val("");
 });
 
-$('.join-input').keyup(function(e){
+$('.add-input').keyup(function(e){
     if(e.keyCode == 13) {
         $(this).trigger("enterKey");
     }
