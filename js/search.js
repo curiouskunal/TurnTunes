@@ -18,7 +18,7 @@ function onYouTubeApiLoad() {
     // See https://goo.gl/PdPA1 to get a key for your own applications.
     gapi.client.setApiKey('AIzaSyAIc1dwxs7aqJkoojrRjfJHaNfukKyYB3k');
 
-    search();
+    //search();
 }
 
 function search() {
@@ -27,7 +27,7 @@ function search() {
         part: 'snippet',
         q: 'back to back'
     });
-    
+
     // Send the request to the API server,
     // and invoke onSearchRepsonse() with the response.
     request.execute(onSearchResponse);
