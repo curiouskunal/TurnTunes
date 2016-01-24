@@ -16,7 +16,7 @@ usersRef.on('child_added', function(childSnapshot) {
   if (length == 1) {
   	$("#empty-plist").hide();
   }
-  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'</li>');
+  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'<i class="upvote fa fa-thumbs-up" align="right"></i</li>');
   
 });
 

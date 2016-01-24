@@ -11,8 +11,8 @@ body {
     width: 100%;
     height: 100%;
     background-color: #c9c9c9;
-    background: url('../img/party.png');
-    background-position: center; center;
+    background: url('../img/party.png') no-repeat center center fixed;
+    background-position:50% 50%;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -590,6 +590,22 @@ img::-moz-selection {
 .label-default {
     background-color: #D24D57;
     margin: 0 2%;
+}
+
+.upvote {
+    background-color: #D24D57;
+    margin: 0 2%;
+      display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  float: right;
 }
 
 
