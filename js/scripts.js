@@ -17,15 +17,11 @@ usersRef.on('child_added', function(childSnapshot) {
   	$("#empty-plist").hide();
   }
   $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'<i class="upvote fa fa-thumbs-up" align="right"></i</li>');
-  
+
 });
 
 // Main Page UI functions
 $("#join-btn").click(function() {
-
-
-
-
  if ( $(".join-input").css('visibility') == 'hidden' )
     $(".join-input").css('visibility','visible').focus();
   else
