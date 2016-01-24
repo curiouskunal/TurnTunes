@@ -9,7 +9,7 @@ var searchSongs = function (query) {
           usersRef.push({
             'song': response.tracks.items[0].name + " - " + response.tracks.items[0].artists[0].name,
             'url': response.tracks.items[0].preview_url,
-            'img': response.tracks.items[0].album.images[2].url,
+            'img': response.tracks.items[0].album.images[1].url,
             'album': response.tracks.items[0].album.name,
             'votes': 1
           });

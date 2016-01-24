@@ -609,3 +609,17 @@ img::-moz-selection {
 }
 
 
+
+.np-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 5% auto;
+}
+
+.audio {
+    border: 2px solid #D24D57;
+    width: 100%
+}
+
+

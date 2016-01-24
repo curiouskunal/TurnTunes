@@ -1,6 +1,7 @@
 var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/butter');
 var songQueue = new Queue(); // The class was taken from this site http://code.stephenmorley.org/javascript/queues/
 var playing = false;
+var songCount = 1;
 
 //Firebase data functions
 usersRef.on('child_added', function(childSnapshot) {
@@ -15,10 +16,14 @@ usersRef.on('child_added', function(childSnapshot) {
   	$("#empty-plist").hide();
     if (!($('#song-play').attr('src')) || !playing) {
       playing = true;
-      $('#song-play').attr('src', songQueue.dequeue().url);
+      var newSong = songQueue.dequeue();
+      $('#song-play').attr('src', newSong.url);
+      $(".np-title").text(newSong.song);
+      $(".np-img").attr('src', newSong.img)
     }
   }
-  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'<i class="upvote fa fa-thumbs-up" align="right"></i</li>');
+  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+songCount+'</span>'+song+/*'<i class="upvote fa fa-thumbs-up" align="right"></i*/'</li>');
+  songCount++;
 });
 
 // Main Page UI functions
@@ -62,7 +67,10 @@ $('.add-input').keyup(function(e){
 
 $('#song-play').on('ended', function() {
   if (songQueue.peek()) {
-    $(this).attr('src', songQueue.dequeue().url);
+    var newSong = songQueue.dequeue();
+    $(this).attr('src', newSong.url);
+    $(".np-title").text(newSong.song);
+    $(".np-img").attr('src', newSong.img)
   } else {
     playing = false;
   }
