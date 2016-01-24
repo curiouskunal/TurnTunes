@@ -26,12 +26,12 @@ button:focus {
 	cursor: pointer;
 	padding: 15px 50px;
 	display: inline-block;
-	margin: 15px 20px;
+	margin: 5px 0;
 	letter-spacing: 1px;
 	font-weight: 700;
 	outline: none;
 	position: relative;
-	width: 50%;
+	width: 100%;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;

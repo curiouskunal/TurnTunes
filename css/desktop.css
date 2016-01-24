@@ -1,0 +1,15 @@
+@media (min-width: 768px) {
+	.join-input, .add-input, .btn {
+		width: 60%;
+	}
+
+	.btn {
+		margin: 15px 0;
+	}
+
+	.add-input {
+		width: 100%;
+	}
+
+
+}
