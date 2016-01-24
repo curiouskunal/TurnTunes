@@ -12,7 +12,7 @@ body {
     height: 100%;
     background-color: #c9c9c9;
     background: url('../img/party.png');
-    background-position: bottom center;
+    background-position: center; center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
