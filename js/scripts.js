@@ -41,6 +41,7 @@ $('.add-input').bind("enterKey",function(e){
      'song': song,
      'votes': 1
    });
+   searchSongs(song);
    $(this).val("");
 });
 
