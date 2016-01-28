@@ -1,5 +1,6 @@
-var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/butter');
+var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/carrot');
 var songQueue = new Queue(); // The class was taken from this site http://code.stephenmorley.org/javascript/queues/
+var songCount = 1;
 
 function toTitleCase(str) {
     return str.replace(/\w\S*/g, function(txt) {
@@ -12,9 +13,12 @@ usersRef.on('child_added', function(childSnapshot) {
   var song = toTitleCase(childSnapshot.val().song);
   var votes = childSnapshot.val().votes;
   //songQueue.enqueue(song);
+  if (songCount > 1) {
+    $("#empty-plist").hide();
+  }
 
-  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+votes+'</span>'+song+'<i class="upvote fa fa-thumbs-up" align="right"></i</li>');
-  
+  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+songCount+'</span>'+song+/*'<i class="upvote fa fa-thumbs-up" align="right"></i>*/'</li>');
+  songCount++;
 });
 
 // Main Page UI functions
@@ -39,7 +43,7 @@ $('.join-input').keypress(function (e) {
 
 $('#host-btn').on('click', function() {
   usersRef.remove();
-  window.location.href =  "butter.html"; //Hardcoded into butter for now
+  window.location.href =  "carrot.html"; //Hardcoded into butter for now
   return false;
 });
 
