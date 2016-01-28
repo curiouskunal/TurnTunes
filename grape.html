@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TurnTunes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/component.css" />
+    <link rel="stylesheet" href="css/desktop.css" />
+    <link href="img/favicon.png" rel="icon" type="image/png">
+
+  </head>
+  <body>
+      <div class="container">
+        <div class="row brand">
+            <h4 class="brand" align="center">TurnTunes</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="alt">Now Playing</h1>
+            </div>
+        </div>
+<div align="center">
+        <div class="row">
+            <div class="col-xs-12">
+                <img class="np-img img-rounded">
+                <br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+               <span class="np-title" align="center"></span>
+               <br>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <audio  id="song-play" controls="controls" autoplay="true"><source src="" type="audio/mp3"></audio>
+                    </div>
+            </div>
+            </div>
+
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="alt">Playlist</h1><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+               <ul class="list-group playlist">
+                  <li class="list-group-item" id="empty-plist">
+                    <span class="label label-default label-pill pull-xs-right"></span>
+                    Let's get this party started! Add some songs below.
+                  </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="alt">Add Songs</h1><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <input class="add-input" type="text" name="songid">
+            </div>
+        </div>
+
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+        <!-- <script>
+        SC.initialize({
+          client_id: 'e978f526182dc8e9fff2c3802c852c82'
+        });
+
+        var page_size = 100;
+        SC.get('/tracks', { limit: page_size }).then(function(tracks) {
+          // first 100 tracks
+        });
+
+        SC.get('/tracks', {
+          q: 'metro boomin', license: 'cc-by-sa'
+        }).then(function(tracks) {
+          console.log(tracks[0].title);
+        });
+
+        // stream track id 293
+        SC.stream('/tracks/293').then(function(player){
+          player.play();
+        });
+        </script> -->
+
+
+
+
+    </div>
+
+    <!--scripts loaded here from cdn for performance -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+    <script src="js/Queue.js"></script>
+    <script src="js/spotify.js"></script>
+    <script src="js/scripts.js"></script>
+     <script src="js/search.js"></script>
+     <script src="js/soundcloud.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
+  </body>
+</html>
