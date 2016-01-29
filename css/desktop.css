@@ -9,10 +9,17 @@
 
 	.add-input {
 		width: 100%;
+		margin-bottom: 20%;
 	}
 
 	.brand {
 		font-size: 6rem;
+	}
+
+	#add-btn {
+		width: 100%;
+		margin: 0 auto;
+		padding: 7px 10px;
 	}
 
 

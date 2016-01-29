@@ -26,7 +26,7 @@ usersRef.on('child_added', function(childSnapshot) {
 });
 
 // Main Page UI functions
-$("#join-btn").click(function() {
+$("#host-btn").click(function() {
  if ( $(".join-input").css('visibility') == 'hidden' )
     $(".join-input").css('visibility','visible').focus();
   else
@@ -40,14 +40,22 @@ $(".brand").click(function(){
 $('.join-input').keypress(function (e) {
   if (e.which == 13) {
     dest = $('.join-input').val();
-    window.location.href =  dest.toLowerCase() + ".html";
+    usersRef.remove();
+    $('#skip-btn').show();
+    window.location.href =  dest.toLowerCase() + ".html?host=grape";
     return false;
   }
 });
 
-$('#host-btn').on('click', function() {
-  usersRef.remove();
-  window.location.href =  "grape.html"; //Hardcoded into butter for now
+var isHost = window.location.search.substring(6);
+
+if (isHost == 'grape') {
+  $('#skip-btn').show();
+  $("#song-play").attr('controls','controls');
+}
+
+$('#join-btn').on('click', function() {
+  window.location.href =  "party.html"; //Hardcoded into butter for now
   return false;
 });
 
@@ -56,6 +64,12 @@ $('.add-input').bind("enterKey",function(e){
    var song = $(this).val().toLowerCase();
    searchSC(song);
    $(this).val("");
+});
+
+$("#add-btn").on('click', function() {
+  var song = $('.add-input').val().toLowerCase();
+  searchSC(song);
+  $('.add-input').val("");
 });
 
 $('.add-input').keyup(function(e){
@@ -73,4 +87,11 @@ $('#song-play').on('ended', function() {
   } else {
     playing = false;
   }
+});
+
+$('#skip-btn').on('click', function() {
+  var newSong = songQueue.dequeue();
+  $('#song-play').attr('src', newSong.url);
+  $(".np-title").text(newSong.song);
+  $(".np-img").attr('src', newSong.img)
 });

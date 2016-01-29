@@ -13,6 +13,7 @@ var searchSC = function (query) {
       'song': topTrack.title + " - " + topTrack.user.username,
       'img': topTrack.artwork_url.replace('-large', '-t500x500'),
       'url': topTrack.stream_url + "?client_id=" + clientId,
+      'stream?': topTrack.streamable
     });
   });
 };
