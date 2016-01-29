@@ -1,4 +1,13 @@
 @media (min-width: 768px) {
+	body {
+			background: url('../img/party.png') no-repeat center center fixed;
+			background-position: center bottom;
+			background-size: cover;
+	}
+	.html-mobile-background {
+			display: none;
+	}
+
 	.join-input, .add-input, .btn {
 		width: 60%;
 	}
