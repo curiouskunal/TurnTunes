@@ -3,6 +3,8 @@ var nowPlaying = new Firebase('https://dazzling-torch-8949.firebaseio.com/grape/
 var songQueue = new Queue(); // The class was taken from this site http://code.stephenmorley.org/javascript/queues/
 var playing = false;
 var songCount = 1;
+var firebaseRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/');
+var currentRef;
 
 var isHost = window.location.search.substring(6) == 'd74fdde2944f475adc4a85e349d4ee7b';
 
@@ -62,23 +64,6 @@ $(".brand").click(function() {
     window.location.href = "index.html";
 });
 
-$('.join-input').keypress(function(e) {
-    if (e.which == 13) {
-        dest = $('.join-input').val();
-        if (dest.toLowerCase() == "butter") {
-            usersRef.remove();
-            nowPlaying.remove();
-            $('#skip-btn').show();
-            window.location.href = "party.html?host=d74fdde2944f475adc4a85e349d4ee7b";
-        } else {
-            $(this).val("");
-            alert("Incorrect Password");
-        }
-
-        return false;
-    }
-});
-
 $('#join-btn').on('click', function() {
     window.location.href = "party.html";
     return false;
@@ -136,4 +121,45 @@ $('#skip-btn').on('click', function() {
         'img': newSong.img,
         'url': newSong.url
     });
+});
+
+// Main Page UI functions
+
+$('.join-input').keypress(function(e) {
+    if (e.which == 13) {
+        dest = $('.join-input').val();
+        if (dest == ""){
+          alert("Please specify a party name");
+        }
+        usersRef.remove();
+        nowPlaying.remove();
+        window.location.href = "party.html?host=" + dest;
+        var temp = firebaseRef.child(dest);
+        currentRef = temp;
+        currentRef.set ({
+        });
+        localStorage.setItem("currentRef", currentRef);
+        return false;
+    }
+});
+
+$('.join-party').keypress(function(e) {
+    if (e.which == 13) {
+        dest = $('.join-party').val();
+        if (dest == ""){
+          alert("Please specify a party name");
+        }
+        window.location.href = "party.html?host=" + dest;
+        var temp = firebaseRef.child(dest);
+        currentRef = temp;
+        localStorage.setItem("currentRef", currentRef);
+        return false;
+    }
+});
+
+$('#join-btn').on('click', function() {
+  if ($(".join-party").css('visibility') == 'hidden')
+      $(".join-party").css('visibility', 'visible').focus();
+  else
+      $(".join-party").css('visibility', 'hidden');
 });

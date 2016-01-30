@@ -6,7 +6,7 @@ SC.initialize({
 });
 
 var pushTrack = function(track) {
-    usersRef.push({
+    currentRef.push({
         'song': track.song,
         'img': track.img,
         'url': track.url
