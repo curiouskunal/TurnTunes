@@ -21,9 +21,12 @@ usersRef.on('child_added', function(childSnapshot) {
       $(".np-img").attr('src', newSong.img)
     }
   }
+
   $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+songCount+'</span>'+song+'</li>');
   songCount++;
 });
+
+
 
 // Main Page UI functions
 $("#host-btn").click(function() {
@@ -62,12 +65,14 @@ $('#join-btn').on('click', function() {
 //Playlist page UI functions
 $('.add-input').bind("enterKey",function(e){
    var song = $(this).val().toLowerCase();
+  $('.search-result').remove();
    searchSC(song);
    $(this).val("");
 });
 
 $("#add-btn").on('click', function() {
   var song = $('.add-input').val().toLowerCase();
+
   searchSC(song);
   $('.add-input').val("");
 });
