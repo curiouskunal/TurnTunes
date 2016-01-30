@@ -1,28 +1,37 @@
-var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/carrot');
+var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/grape');
 var songQueue = new Queue(); // The class was taken from this site http://code.stephenmorley.org/javascript/queues/
+var playing = false;
 var songCount = 1;
 
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
 
 //Firebase data functions
 usersRef.on('child_added', function(childSnapshot) {
-  var song = toTitleCase(childSnapshot.val().song);
+  var key = childSnapshot.key();
+  var song = childSnapshot.val().song;
+  var url = childSnapshot.val().url;
   var votes = childSnapshot.val().votes;
-  //songQueue.enqueue(song);
-  if (songCount > 1) {
-    $("#empty-plist").hide();
+
+  songQueue.enqueue(childSnapshot.val());
+  var length = songQueue.getLength();
+  if (length == 1) {
+  	$("#empty-plist").hide();
+    if (!($('#song-play').attr('src')) || !playing) {
+      playing = true;
+      var newSong = songQueue.dequeue();
+      $('#song-play').attr('src', newSong.url);
+      $(".np-title").text(newSong.song);
+      $(".np-img").attr('src', newSong.img)
+    }
   }
 
-  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+songCount+'</span>'+song+/*'<i class="upvote fa fa-thumbs-up" align="right"></i>*/'</li>');
+  $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">'+songCount+'</span>'+song+'</li>');
   songCount++;
 });
 
+
+
 // Main Page UI functions
-$("#join-btn").click(function() {
+$("#host-btn").click(function() {
  if ( $(".join-input").css('visibility') == 'hidden' )
     $(".join-input").css('visibility','visible').focus();
   else
@@ -36,26 +45,38 @@ $(".brand").click(function(){
 $('.join-input').keypress(function (e) {
   if (e.which == 13) {
     dest = $('.join-input').val();
-    window.location.href =  dest.toLowerCase() + ".html";
+    usersRef.remove();
+    $('#skip-btn').show();
+    window.location.href =  dest.toLowerCase() + ".html?host=grape";
     return false;
   }
 });
 
-$('#host-btn').on('click', function() {
-  usersRef.remove();
-  window.location.href =  "carrot.html"; //Hardcoded into butter for now
+var isHost = window.location.search.substring(6);
+
+if (isHost == 'grape') {
+  $('#skip-btn').show();
+  $("#song-play").attr('controls','controls');
+}
+
+$('#join-btn').on('click', function() {
+  window.location.href =  "party.html"; //Hardcoded into butter for now
   return false;
 });
 
 //Playlist page UI functions
 $('.add-input').bind("enterKey",function(e){
    var song = $(this).val().toLowerCase();
-   usersRef.push({
-     'song': song,
-     'votes': 1
-   });
-   search(song);
+  $('.search-result').remove();
+   searchSC(song);
    $(this).val("");
+});
+
+$("#add-btn").on('click', function() {
+  var song = $('.add-input').val().toLowerCase();
+
+  searchSC(song);
+  $('.add-input').val("");
 });
 
 $('.add-input').keyup(function(e){
@@ -64,27 +85,20 @@ $('.add-input').keyup(function(e){
     }
 });
 
-// function updateVotes(curSong) {
-//   var newSong = true;
-//   usersRef.on("value", function(snapshot) {
-//     snapshot.forEach(function(childSnapshot) {
-//       var key = childSnapshot.key();
-//       var childData = childSnapshot.val();
-//       console.log(childData.song + " = " + curSong);
-//       var num = parseInt(childData.votes) + 1;
-//       console.log(childData.votes + " = " + num);
-//       if (childData.song === curSong) {
-//         console.log("Im in here!");
-//         usersRef.child(key).set({
-//           'song': childData.song,
-//           'votes': parseInt(childData.votes) + 1
-//         });
-//         newSong = false;
-//         return newSong;
-//       }
-//     });
-//     if (!newSong) return newSong;
-//   });
-//   console.log("here?");
-//   return newSong;
-// }
+$('#song-play').on('ended', function() {
+  if (songQueue.peek()) {
+    var newSong = songQueue.dequeue();
+    $(this).attr('src', newSong.url);
+    $(".np-title").text(newSong.song);
+    $(".np-img").attr('src', newSong.img)
+  } else {
+    playing = false;
+  }
+});
+
+$('#skip-btn').on('click', function() {
+  var newSong = songQueue.dequeue();
+  $('#song-play').attr('src', newSong.url);
+  $(".np-title").text(newSong.song);
+  $(".np-img").attr('src', newSong.img)
+});

@@ -8,23 +8,20 @@
 
 html,
 body {
-    width: 100%;
-    height: 100%;
-    background-color: #c9c9c9;
-    background: url('../img/party.png') no-repeat center center fixed;
-    background-position:50% 50%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    min-height: 100%;
+    font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
+    color: #ffffff;
 }
 
-body {
-    font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
-    background-color: #282828;
-    color: #fff;
-    webkit-tap-highlight-color: #222;
+.html-mobile-background {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110%;
+    background: url('../img/party-mobile.png');
+    background-size: auto;
+    will-change: transform;
 }
 
 hr {
@@ -47,7 +44,7 @@ a {
 }
 
 .alt {
-    color: #D24D57; 
+    color: #D24D57;
 }
 
 a:hover,
@@ -111,9 +108,6 @@ p {
     background-color: #1d1d1d;
 }
 
-section {
-    padding: 70px 0;
-}
 
 aside {
     padding: 50px 0;
@@ -272,11 +266,11 @@ header .header-content .inner p {
 
 #video-background {
   position: absolute;
-  right: 0; 
+  right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
-  width: auto; 
+  width: auto;
   height: auto;
   z-index: 1;
 }
@@ -293,7 +287,7 @@ footer {
     .icon-lg {
         font-size: 80px;
     }
-    
+
     header {
         min-height: 100%;
     }
@@ -323,11 +317,8 @@ footer {
         max-width: 80%;
         font-size: 18px;
     }
-    
-    section {
-        min-height: 600px;
-        padding: 100px 0;
-    }
+
+
 
 }
 
@@ -558,7 +549,6 @@ img::-moz-selection {
     background-color:rgba(0,0,0,0.6);
     cursor: pointer;
     padding: 10px 20px;
-    margin-bottom: 20%;
     display: inline-block;
     letter-spacing: 1px;
     font-weight: 700;
@@ -578,7 +568,7 @@ img::-moz-selection {
 }
 
 .list-group {
-  
+
     color: #fff;
 }
 
@@ -593,9 +583,9 @@ img::-moz-selection {
 }
 
 .upvote {
-    background-color: #D24D57;
-    margin: 0 2%;
-      display: inline;
+  background-color: #D24D57;
+  margin: 0 2%;
+  display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
   font-weight: bold;
@@ -609,3 +599,43 @@ img::-moz-selection {
 }
 
 
+
+.np-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 5% auto;
+}
+
+.np-title-wrapper {
+  margin: 10px auto;
+}
+
+audio {
+
+}
+
+#skip-btn {
+  display: none;
+}
+
+#add-btn {
+  padding: 10px;
+  margin-bottom: 20%;
+}
+
+#song-play {
+
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.search li {
+  border: 1px solid #454545;
+  border-top: 0;
+}
+
+.
