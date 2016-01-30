@@ -62,6 +62,20 @@ $('.join-input').keypress(function(e) {
     }
 });
 
+$('.join-party').keypress(function(e) {
+    if (e.which == 13) {
+        dest = $('.join-party').val();
+        if (dest == ""){
+          alert("Please specify a party name");
+        }
+        window.location.href = "party.html?host=" + dest;
+        var temp = firebaseRef.child(dest);
+        currentRef = temp;
+        localStorage.setItem("currentRef", currentRef);
+        return false;
+    }
+});
+
 var isHost = window.location.search.substring(6);
 
 if (isHost == 'd74fdde2944f475adc4a85e349d4ee7b') {
