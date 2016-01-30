@@ -12,6 +12,10 @@
 		width: 60%;
 	}
 
+	.join-input {
+		margin-top: 2%;
+	}
+
 	.btn {
 		margin: 15px 0;
 	}
@@ -30,5 +34,12 @@
 		padding: 7px 10px;
 	}
 
+	#playlist {
+	  margin-bottom: 10%;
+	}
+
+	#join-btn {
+		margin: 15px 0;
+	}
 
 }

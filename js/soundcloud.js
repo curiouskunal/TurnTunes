@@ -23,32 +23,30 @@ var searchSC = function(query) {
 
 var topResults = function(results) {
     var topFive = [];
-    var currentTrack;
-    var artwork, title;
-    var legitTrack;
+    var currentResult, currentTrack, artwork, title;
 
     for (var i = 0; i < results.length; i++) {
-        currentTrack = results[i];
+        currentResult = results[i];
 
-        if (currentTrack.streamable && topFive.length < 5) {
-            artwork = currentTrack.artwork_url;
-            title = currentTrack.title + " - " + currentTrack.user.username;
+        if (currentResult.streamable && topFive.length < 5) {
+            artwork = currentResult.artwork_url;
+            title = currentResult.title + " - " + currentResult.user.username;
 
             if (artwork == null) {
-                artwork = "http://i.imgur.com/665vfkH.png";
+                artwork = "img/cover-art.png";
             } else {
-                artwork = currentTrack.artwork_url.replace('-large', '-t500x500');
+                artwork = currentResult.artwork_url.replace('-large', '-t500x500');
             }
 
-            legitTrack = {
-              "song": title,
-              "img": artwork,
-              "url": currentTrack.stream_url + "?client_id=" + clientId
+            currentTrack = {
+                "song": title,
+                "img": artwork,
+                "url": currentResult.stream_url + "?client_id=" + clientId
             };
 
-            topFive.push(legitTrack);
-            $('.search').append('<li data-track="'+i+'" class="search-result list-group-item">' + title + '</li>');
-            resultObj[i] = legitTrack;
+            topFive.push(currentTrack);
+            $('.search').append('<li data-track="' + i + '" class="search-result list-group-item">' + title + '</li>');
+            resultObj[i] = currentTrack;
         }
     }
 
