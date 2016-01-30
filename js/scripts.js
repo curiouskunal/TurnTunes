@@ -13,34 +13,6 @@ if (isHost) {
     $("#song-play").attr('controls', 'controls');
 }
 
-//Firebase data functions
-usersRef.on('child_added', function(childSnapshot) {
-    var key = childSnapshot.key();
-    var song = childSnapshot.val().song;
-    var url = childSnapshot.val().url;
-
-    songQueue.enqueue(childSnapshot.val());
-    var length = songQueue.getLength();
-
-    if (length == 1) {
-        $("#empty-plist").hide();
-        if (!($('#song-play').attr('src')) || !playing) {
-            playing = true;
-            var newSong = songQueue.dequeue();
-            if (isHost) {
-                nowPlaying.set({
-                    'song': newSong.song,
-                    'img': newSong.img,
-                    'url': newSong.url
-                });
-            }
-        }
-    }
-
-    $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
-    songCount++;
-});
-
 nowPlaying.on("value", function(snapshot) {
     var newSong = snapshot.val();
     if (newSong != null) {
@@ -63,12 +35,6 @@ $("#host-btn").click(function() {
 $(".brand").click(function() {
     window.location.href = "index.html";
 });
-
-$('#join-btn').on('click', function() {
-    window.location.href = "party.html";
-    return false;
-});
-
 
 //Playlist page UI functions
 $('.add-input').bind("enterKey", function(e) {
