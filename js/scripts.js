@@ -1,32 +1,30 @@
 var usersRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/grape');
+var firebaseRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/');
 var songQueue = new Queue(); // The class was taken from this site http://code.stephenmorley.org/javascript/queues/
 var playing = false;
 var songCount = 1;
+var currentRef;
 
-//Firebase data functions
-usersRef.on('child_added', function(childSnapshot) {
-    var key = childSnapshot.key();
-    var song = childSnapshot.val().song;
-    var url = childSnapshot.val().url;
-    var votes = childSnapshot.val().votes;
+//firebaseRef.set({
+  //title: "Turn Tunes",
+  //author: "TurnTunes Inc.",
+//});
 
-    songQueue.enqueue(childSnapshot.val());
-    var length = songQueue.getLength();
-    if (length == 1) {
-        $("#empty-plist").hide();
-        if (!($('#song-play').attr('src')) || !playing) {
-            playing = true;
-            var newSong = songQueue.dequeue();
-            $('#song-play').attr('src', newSong.url);
-            $(".np-title").text(newSong.song);
-            $(".np-img").attr('src', newSong.img)
-        }
-    }
-
-    $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
-    songCount++;
+/*usersReff.push ({
+  'song': "song",
+  'img': "image",
+  'url': "track"
 });
-
+usersReff.push ({
+  'song': "song",
+  'img': "image",
+  'url': "track"
+});
+usersReff.push ({
+  'song': "song",
+  'img': "image",
+  'url': "track"
+});*/
 
 // Main Page UI functions
 $("#host-btn").click(function() {
@@ -43,15 +41,23 @@ $(".brand").click(function() {
 $('.join-input').keypress(function(e) {
     if (e.which == 13) {
         dest = $('.join-input').val();
-        if (dest.toLowerCase() == "butter") {
+        if (dest == ""){
+          alert("Please specify a party name");
+        }
+        window.location.href = "party.html?host=" + dest;
+        /*if (dest.toLowerCase() == "butter") {
             usersRef.remove();
             $('#skip-btn').show();
             window.location.href = "party.html?host=d74fdde2944f475adc4a85e349d4ee7b";
         } else {
             $(this).val("");
             alert("Incorrect Password");
-        }
-
+        }*/
+        var temp = firebaseRef.child(dest);
+        currentRef = temp;
+        currentRef.set ({
+        });
+        localStorage.setItem("currentRef", currentRef);
         return false;
     }
 });
@@ -64,8 +70,12 @@ if (isHost == 'd74fdde2944f475adc4a85e349d4ee7b') {
 }
 
 $('#join-btn').on('click', function() {
-    window.location.href = "party.html";
-    return false;
+  if ($(".join-party").css('visibility') == 'hidden')
+      $(".join-party").css('visibility', 'visible').focus();
+  else
+      $(".join-party").css('visibility', 'hidden');
+    //window.location.href = "party.html";
+    //return false;
 });
 
 
