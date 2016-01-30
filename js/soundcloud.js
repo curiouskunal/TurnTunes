@@ -22,13 +22,13 @@ var searchSC = function(query) {
 };
 
 var topResults = function(results) {
-    var topFive = [];
+    var streamable = [];
     var currentResult, currentTrack, artwork, title;
 
     for (var i = 0; i < results.length; i++) {
         currentResult = results[i];
 
-        if (currentResult.streamable && topFive.length < 5) {
+        if (currentResult.streamable) {
             artwork = currentResult.artwork_url;
             title = currentResult.title + " - " + currentResult.user.username;
 
@@ -44,13 +44,13 @@ var topResults = function(results) {
                 "url": currentResult.stream_url + "?client_id=" + clientId
             };
 
-            topFive.push(currentTrack);
+            streamable.push(currentTrack);
             $('.search').append('<li data-track="' + i + '" class="search-result list-group-item">' + title + '</li>');
             resultObj[i] = currentTrack;
         }
     }
 
-    return topFive;
+    return streamable;
 
 };
 

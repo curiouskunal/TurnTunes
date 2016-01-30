@@ -192,6 +192,11 @@ ul {
     list-style-type: none;
 }
 
+.search {
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
 .search li {
   border: 1px solid #454545;
   border-top: 0;
