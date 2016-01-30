@@ -6,9 +6,9 @@ var songCount = 1;
 var firebaseRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/');
 var currentRef;
 
-var isHost = window.location.search.substring(6) == 'd74fdde2944f475adc4a85e349d4ee7b';
+var isHost = window.location.search.search("htrue");
 
-if (isHost) {
+if (isHost !== -1) {
     $('#skip-btn').show();
     $("#song-play").attr('controls', 'controls');
 }
@@ -99,7 +99,7 @@ $('.join-input').keypress(function(e) {
         }
         usersRef.remove();
         nowPlaying.remove();
-        window.location.href = "party.html?host=" + dest;
+        window.location.href = "party.html?host=" + dest + "htrue";
         var temp = firebaseRef.child(dest);
         currentRef = temp;
         currentRef.set ({
