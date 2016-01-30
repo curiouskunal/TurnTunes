@@ -41,9 +41,11 @@ usersRef.on('child_added', function(childSnapshot) {
 
 nowPlaying.on("value", function(snapshot) {
     var newSong = snapshot.val();
-    $('#song-play').attr('src', newSong.url);
-    $(".np-title").text(newSong.song);
-    $(".np-img").attr('src', newSong.img);
+    if (newSong != null) {
+      $('#song-play').attr('src', newSong.url);
+      $(".np-title").text(newSong.song);
+      $(".np-img").attr('src', newSong.img);
+  }
 
 }, function(errorObject) {});
 
