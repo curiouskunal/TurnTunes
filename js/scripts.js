@@ -8,6 +8,15 @@ var currentRef;
 
 var isHost = window.location.search.search("htrue");
 
+
+var partyExists = function (partyName) {
+  // firebaseRef.once("value", function(snapshot) {
+  //   var hasName = snapshot.hasChild(partyName);
+  //   console.log(hasName);
+  //   return hasName;
+  // });
+}
+
 if (isHost !== -1) {
     $('#skip-btn').show();
     $("#song-play").attr('controls', 'controls');
@@ -26,10 +35,7 @@ nowPlaying.on("value", function(snapshot) {
 
 // Main Page UI functions
 $("#host-btn").click(function() {
-    if ($(".join-input").css('visibility') == 'hidden')
-        $(".join-input").css('visibility', 'visible').focus();
-    else
-        $(".join-input").css('visibility', 'hidden');
+     $(".join-input").fadeToggle().focus();
 });
 
 $(".brand").click(function() {
@@ -124,8 +130,5 @@ $('.join-party').keypress(function(e) {
 });
 
 $('#join-btn').on('click', function() {
-  if ($(".join-party").css('visibility') == 'hidden')
-      $(".join-party").css('visibility', 'visible').focus();
-  else
-      $(".join-party").css('visibility', 'hidden');
+  $(".join-party").fadeToggle().focus();
 });

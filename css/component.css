@@ -26,7 +26,6 @@ button:focus {
 	cursor: pointer;
 	padding: 15px 50px;
 	display: inline-block;
-	margin: 5px 0;
 	letter-spacing: 1px;
 	font-weight: 700;
 	outline: none;
@@ -1079,19 +1078,19 @@ button:focus {
 }
 
 @-webkit-keyframes fillToRight {
-	to { 
+	to {
 		width: 100%;
 	}
 }
 
 @-moz-keyframes fillToRight {
-	to { 
+	to {
 		width: 100%;
 	}
 }
 
 @keyframes fillToRight {
-	to { 
+	to {
 		width: 100%;
 	}
 }
@@ -1126,19 +1125,19 @@ button:focus {
 }
 
 @-webkit-keyframes emptyBottom {
-	to { 
+	to {
 		height: 100%;
 	}
 }
 
 @-moz-keyframes emptyBottom {
-	to { 
+	to {
 		height: 100%;
 	}
 }
 
 @keyframes emptyBottom {
-	to { 
+	to {
 		height: 100%;
 	}
 }
@@ -1168,10 +1167,10 @@ button:focus {
 	-webkit-animation: scaleFade 0.5s forwards;
 	-moz-animation: scaleFade 0.5s forwards;
 	animation: scaleFade 0.5s forwards;
-} 
+}
 
 @-webkit-keyframes scaleFade {
-	50% { 
+	50% {
 		opacity: 1;
 		-webkit-transform: scale(1);
 	}
@@ -1182,7 +1181,7 @@ button:focus {
 }
 
 @-moz-keyframes scaleFade {
-	50% { 
+	50% {
 		opacity: 1;
 		-moz-transform: scale(1);
 	}
@@ -1193,7 +1192,7 @@ button:focus {
 }
 
 @keyframes scaleFade {
-	50% { 
+	50% {
 		opacity: 1;
 		transform: scale(1);
 	}
@@ -1236,24 +1235,24 @@ button:focus {
 	-webkit-animation: dropDown 0.3s forwards;
 	-moz-animation: dropDown 0.3s forwards;
 	animation: dropDown 0.3s forwards;
-} 
+}
 
 @-webkit-keyframes dropDown {
-	to { 
+	to {
 		opacity: 1;
 		-webkit-transform: scale(1);
 	}
 }
 
 @-moz-keyframes dropDown {
-	to { 
+	to {
 		opacity: 1;
 		-moz-transform: scale(1);
 	}
 }
 
 @keyframes dropDown {
-	to { 
+	to {
 		opacity: 1;
 		transform: scale(1);
 	}
@@ -1286,36 +1285,36 @@ button:focus {
 	-webkit-animation: dropDownFade 0.5s forwards;
 	-moz-animation: dropDownFade 0.5s forwards;
 	animation: dropDownFade 0.5s forwards;
-} 
+}
 
 @-webkit-keyframes dropDownFade {
-	50% { 
+	50% {
 		opacity: 1;
 		-webkit-transform: scale(1);
 	}
-	100% { 
+	100% {
 		opacity: 0;
 		-webkit-transform: scale(1.5);
 	}
 }
 
 @-moz-keyframes dropDownFade {
-	50% { 
+	50% {
 		opacity: 1;
 		-moz-transform: scale(1);
 	}
-	100% { 
+	100% {
 		opacity: 0;
 		-moz-transform: scale(1.5);
 	}
 }
 
 @keyframes dropDownFade {
-	50% { 
+	50% {
 		opacity: 1;
 		transform: scale(1);
 	}
-	100% { 
+	100% {
 		opacity: 0;
 		transform: scale(1.5);
 	}
@@ -1367,7 +1366,7 @@ button:focus {
 		-webkit-transform: translateY(50%);
 		opacity: 0;
 	}
-	100% { 
+	100% {
 		opacity: 1;
 		-webkit-transform: translateY(0);
 	}
@@ -1378,7 +1377,7 @@ button:focus {
 		-moz-transform: translateY(50%);
 		opacity: 0;
 	}
-	100% { 
+	100% {
 		opacity: 1;
 		-moz-transform: translateY(0);
 	}
@@ -1389,7 +1388,7 @@ button:focus {
 		transform: translateY(50%);
 		opacity: 0;
 	}
-	100% { 
+	100% {
 		opacity: 1;
 		transform: translateY(0);
 	}
@@ -1436,7 +1435,7 @@ button:focus {
 		-webkit-transform: scale(0);
 		opacity: 0;
 	}
-	100% { 
+	100% {
 		opacity: 1;
 		-webkit-transform: scale(1);
 	}
@@ -1447,7 +1446,7 @@ button:focus {
 		-moz-transform: scale(0);
 		opacity: 0;
 	}
-	100% { 
+	100% {
 		opacity: 1;
 		-moz-transform: scale(1);
 	}
@@ -1458,7 +1457,7 @@ button:focus {
 		transform: scale(0);
 		opacity: 0;
 	}
-	100% { 
+	100% {
 		opacity: 1;
 		transform: scale(1);
 	}
@@ -1469,7 +1468,7 @@ button:focus {
 	position: relative;
 	max-width: 320px;
 	margin: 60px auto 0;
-} 
+}
 
 .trash-effect .icon-file {
 	font-size: 30px;
@@ -1554,7 +1553,7 @@ button:focus {
 	50% {
 		-webkit-transform: rotate(-35deg);
 	}
-	100% { 
+	100% {
 		-webkit-transform: rotate(0deg);
 	}
 }
@@ -1563,7 +1562,7 @@ button:focus {
 	50% {
 		-moz-transform: rotate(-35deg);
 	}
-	100% { 
+	100% {
 		-moz-transform: rotate(0deg);
 	}
 }
@@ -1572,7 +1571,7 @@ button:focus {
 	50% {
 		transform: rotate(-35deg);
 	}
-	100% { 
+	100% {
 		transform: rotate(0deg);
 	}
 }

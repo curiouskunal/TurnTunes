@@ -12,9 +12,6 @@
 		width: 60%;
 	}
 
-	.join-input {
-		margin-top: 2%;
-	}
 
 	.btn {
 		margin: 15px 0;
@@ -40,6 +37,10 @@
 
 	#join-btn {
 		margin: 15px 0;
+	}
+
+	.join-party {
+		width: 60%;
 	}
 
 }
