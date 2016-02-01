@@ -98,20 +98,34 @@ $('#skip-btn').on('click', function() {
 // Main Page UI functions
 
 $('.join-input').keypress(function(e) {
+  var alreadyOccurs = false;
     if (e.which == 13) {
         dest = $('.join-input').val();
-        if (dest == ""){
+        if (dest === ""){
           alert("Please specify a party name");
         }
-        usersRef.remove();
-        nowPlaying.remove();
-        window.location.href = "party.html?host=" + dest + "htrue";
-        var temp = firebaseRef.child(dest);
-        currentRef = temp;
-        currentRef.set ({
+        firebaseRef.once("value", function(snapshot) {
+        // The callback function will only get called once since we return true
+          snapshot.forEach(function(childSnapshot) {
+            var key = childSnapshot.key();
+            if (String(key) === dest){
+              alert("This party name is taken");
+              alreadyOccurs = true;
+            }
+          });
+          if (!alreadyOccurs){
+              console.log("hit");
+              usersRef.remove();
+              nowPlaying.remove();
+              window.location.href = "party.html?host=" + dest + "htrue";
+              var temp = firebaseRef.child(dest);
+              currentRef = temp;
+              currentRef.set ({
+              });
+              localStorage.setItem("currentRef", currentRef);
+              return false;
+            };
         });
-        localStorage.setItem("currentRef", currentRef);
-        return false;
     }
 });
 
