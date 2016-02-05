@@ -107,7 +107,7 @@ header .header-content .inner p {
     }
 }
 
-.join-input {
+.host-input {
     border: 4px solid #D24D57;
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
     font-size: inherit;
@@ -143,7 +143,7 @@ header .header-content .inner p {
     border-radius: 60px;
     display: none;
 }
-.add-input {
+.search-input {
     border: 2px solid #D24D57;
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
     font-size: inherit;
@@ -200,7 +200,7 @@ header .header-content .inner p {
   padding: 10px;
 }
 
-#add-btn {
+#search-btn {
   padding: 10px;
   margin-bottom: 5%;
 }
