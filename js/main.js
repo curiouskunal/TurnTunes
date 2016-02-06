@@ -1,66 +1,73 @@
 /*******************************************************
-  Globals
+  Database & Host Name Functions
 *******************************************************/
 var firebaseRef = new Firebase('https://dazzling-torch-8949.firebaseio.com/');
 var currentRef;
 
+function RandomWord() {
+    var requestStr = "http://randomword.setgetgo.com/get.php?len=4";
+
+    $.ajax({
+        type: "GET",
+        url: requestStr,
+        dataType: "jsonp",
+        jsonpCallback: 'RandomWordComplete'
+    });
+}
+
+function RandomWordComplete(data) {
+    sessionStorage.setItem("hostName", data.Word.toLowerCase());
+}
+
+RandomWord();
+
 /*******************************************************
   Main Page UI
 *******************************************************/
-$("#host-btn").click(function() {
-     $(".host-input").fadeToggle().focus();
-});
-
-$('.host-input').keypress(function(e) {
-  var partyExists = false;
-
-  if (e.which == 13) {
-      dest = $('.host-input').val().replace(/[^a-zA-Z ]/g, "");
-      console.log(dest);
-
-      if (dest === ""){
-        alert("Please specify a party name");
-      }
-
-      firebaseRef.once("value", function(snapshot) {
-      // The callback function will only get called once since we return true
-        snapshot.forEach(function(childSnapshot) {
-          var key = childSnapshot.key();
-          if (String(key) === dest){
-            alert("This party name is taken");
-            partyExists = true;
-          }
+$("#host-btn").click(function () {
+    var partyExists = false;
+    dest = sessionStorage.getItem("hostName");
+    firebaseRef.once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            var key = childSnapshot.key();
+            if (String(key) === dest) {
+                RandomWord();
+                partyExists = true;
+            }
         });
 
-        if (!partyExists){
-            window.location.href = "party.html?host=" + dest;
+        if (!partyExists) {
+            window.location.href = "party.html?id=" + dest;
             var temp = firebaseRef.child(dest);
             currentRef = temp;
-            currentRef.set ({
-            });
+            currentRef.set({});
             sessionStorage.setItem("currentRef", currentRef);
-            sessionStorage.setItem("isHost", true);
+            sessionStorage.setItem("isHost", 1);
             return false;
-          };
-      });
-  }
+        };
+    });
+
 });
 
-$('.join-party').keypress(function(e) {
+$('.join-input').keypress(function (e) {
     if (e.which == 13) {
-        dest = $('.join-party').val();
-        if (dest == ""){
-          alert("Please specify a party name");
+        dest = $('.join-input').val();
+        if (dest == "") {
+            alert("Please specify a party name");
         }
-        window.location.href = "party.html?host=" + dest;
+        window.location.href = "party.html?id=" + dest;
         var temp = firebaseRef.child(dest);
         currentRef = temp;
         sessionStorage.setItem("currentRef", currentRef);
-        sessionStorage.setItem("isHost", false);
+        sessionStorage.setItem("isHost", 0);
         return false;
     }
 });
 
-$('#join-btn').on('click', function() {
-  $(".join-party").fadeToggle().focus();
+$('#join-btn').on('click', function () {
+  if ($(".join-input").css('visibility') == 'hidden')
+       $(".join-input").css('visibility', 'visible').focus();
+   else
+       $(".join-input").css('visibility', 'hidden');
+
 });

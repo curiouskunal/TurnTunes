@@ -107,25 +107,9 @@ header .header-content .inner p {
     }
 }
 
-.host-input {
-    border: 4px solid #D24D57;
-    font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
-    font-size: inherit;
-    color: #fff;
-    background-color:rgba(0,0,0,0.6);
-    cursor: pointer;
-    padding: 15px 50px;
-    letter-spacing: 1px;
-    font-weight: 700;
-    margin-top: 0;
-    outline: none;
-    position: relative;
-    width: 100%;
-    border-radius: 60px;
-    display: none;
-}
 
-.join-party {
+
+.join-input {
     border: 4px solid #D24D57;
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
     font-size: inherit;
@@ -141,7 +125,7 @@ header .header-content .inner p {
     position: relative;
     width: 100%;
     border-radius: 60px;
-    display: none;
+    visibility: hidden;
 }
 .search-input {
     border: 2px solid #D24D57;
@@ -227,6 +211,24 @@ ul {
   margin-bottom: 5%;
 }
 
-#join-btn {
-  margin-bottom: 5%;
+#join-btn, #host-btn {
+  margin-bottom: 7%;
+}
+
+#now-playing {
+  background-color: #0f0f0f;
+  background-image:  linear-gradient(rgba(0, 0, 0, 0.7), transparent 100%),linear-gradient(0deg, rgba(210, 77, 87, 0.9), transparent 100%), url("../img/fire.jpg");
+  background-size: cover;
+  background-position: left bottom;
+  -webkit-box-shadow: inset 0px 0px 16px 10px rgba(0,0,0,0.7);
+  -moz-box-shadow: inset 0px 0px 16px 10px rgba(0,0,0,0.7);
+  box-shadow: inset 0px 0px 16px 10px rgba(0,0,0,0.7);
+  padding: 7% 0;
+  margin: 2% 0;
+}
+
+#skip-btn {
+  -webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
+   -moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
+   box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
 }

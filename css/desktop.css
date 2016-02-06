@@ -8,7 +8,7 @@
 			display: none;
 	}
 
-	.host-input, .search-input, .btn {
+  .join-input, .search-input, .btn {
 		width: 60%;
 	}
 
@@ -35,12 +35,13 @@
 	  margin-bottom: 10%;
 	}
 
-	#join-btn {
+	#join-btn, #host-btn, .join-input {
 		margin: 15px 0;
 	}
 
-	.join-party {
-		width: 60%;
+
+	#now-playing {
+		padding: 2%;
 	}
 
 }

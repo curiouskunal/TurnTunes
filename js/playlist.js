@@ -4,8 +4,9 @@
 var songQueue = new Queue();
 var songCount = 1;
 var playing = false;
-var isHost =  sessionStorage.getItem("isHost");
-var url = sessionStorage.getItem("currentRef");
+var partyName = window.location.search.split("id")[1];
+var isHost = sessionStorage.getItem("isHost");
+var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
 
@@ -13,16 +14,16 @@ var currentRef = new Firebase(url + "/playlist");
 /*******************************************************
   Party UI
 *******************************************************/
-if (isHost) {
+if (isHost == 1) {
     $('#skip-btn').show();
     $("#song-play").attr('controls', 'controls');
-} 
+}
 
-$(".brand").click(function() {
+$(".brand").click(function () {
     window.location.href = "index.html";
 });
 
-currentRef.on('child_added', function(childSnapshot) {
+currentRef.on('child_added', function (childSnapshot) {
     var key = childSnapshot.key();
     var song = childSnapshot.val().song;
     var url = childSnapshot.val().url;
@@ -44,17 +45,17 @@ currentRef.on('child_added', function(childSnapshot) {
     songCount++;
 });
 
-nowPlayingRef.on("value", function(snapshot) {
+nowPlayingRef.on("value", function (snapshot) {
     var newSong = snapshot.val();
     if (newSong != null) {
-      $('#song-play').attr('src', newSong.url);
-      $(".np-title").text(newSong.song);
-      $(".np-img").attr('src', newSong.img);
-  }
+        $('#song-play').attr('src', newSong.url);
+        $(".np-title").text(newSong.song);
+        $(".np-img").attr('src', newSong.img);
+    }
 
-}, function(errorObject) {});
+}, function (errorObject) {});
 
-$('.search-input').bind("enterKey", function(e) {
+$('.search-input').bind("enterKey", function (e) {
     var song = $(this).val().toLowerCase();
     if (song != "") {
         searchSC(song);
@@ -63,7 +64,7 @@ $('.search-input').bind("enterKey", function(e) {
     $('.search-result').remove();
 });
 
-$("#search-btn").on('click', function() {
+$("#search-btn").on('click', function () {
     var song = $('.search-input').val().toLowerCase();
     if (song != "") {
         searchSC(song);
@@ -72,13 +73,13 @@ $("#search-btn").on('click', function() {
     $('.search-result').remove();
 });
 
-$('.search-input').keyup(function(e) {
+$('.search-input').keyup(function (e) {
     if (e.keyCode == 13) {
         $(this).trigger("enterKey");
     }
 });
 
-$('#song-play').on('ended', function() {
+$('#song-play').on('ended', function () {
     if (songQueue.peek()) {
         var newSong = songQueue.dequeue();
         if (isHost) {
@@ -97,7 +98,7 @@ $('#song-play').on('ended', function() {
 
 });
 
-$('#skip-btn').on('click', function() {
+$('#skip-btn').on('click', function () {
     var newSong = songQueue.dequeue();
 
     nowPlayingRef.set({
