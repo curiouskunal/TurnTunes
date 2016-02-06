@@ -147,7 +147,7 @@ header .header-content .inner p {
 .brand {
     font-family: 'Ruthless', cursive;
     font-size: 4rem;
-    padding: 2% 2%;
+    padding: 4% 0 2% 0;
     margin: 0 auto;
     text-transform: none;
     color: #fff;
@@ -217,18 +217,25 @@ ul {
 
 #now-playing {
   background-color: #0f0f0f;
-  background-image:  linear-gradient(rgba(0, 0, 0, 0.7), transparent 100%),linear-gradient(0deg, rgba(210, 77, 87, 0.9), transparent 100%), url("../img/fire.jpg");
+  background-image:  linear-gradient(rgba(0, 0, 0, 0.7), transparent 100%),linear-gradient(0deg, rgba(210, 77, 87, 0.9), transparent 100%), url("../img/vinyl.jpg");
   background-size: cover;
-  background-position: left bottom;
-  -webkit-box-shadow: inset 0px 0px 16px 10px rgba(0,0,0,0.7);
-  -moz-box-shadow: inset 0px 0px 16px 10px rgba(0,0,0,0.7);
-  box-shadow: inset 0px 0px 16px 10px rgba(0,0,0,0.7);
+  background-position: left center;
+  -moz-box-shadow:    inset  0  26px 26px -26px #000000,
+                          inset  0 -26px 26px -26px #000000;
+      -webkit-box-shadow: inset  0  26px 26px -26px #000000,
+                          inset  0 -26px 26px -26px #000000;
+       box-shadow:        inset  0  26px 26px -26px #000000,
+                          inset  0 -26px 26px -26px #000000;
   padding: 7% 0;
-  margin: 2% 0;
+  margin-bottom: 2%;
 }
 
 #skip-btn {
   -webkit-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
    -moz-box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.4);
+}
+
+.partyNameText {
+  text-transform: capitalize;
 }

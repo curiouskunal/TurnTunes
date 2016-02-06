@@ -19,8 +19,15 @@ function RandomWordComplete(data) {
     sessionStorage.setItem("hostName", data.Word.toLowerCase());
 }
 
-RandomWord();
+function clearFirebase () {
+  firebaseRef.once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+          firebaseRef.remove();
+      });
+  });
+}
 
+RandomWord();
 /*******************************************************
   Main Page UI
 *******************************************************/

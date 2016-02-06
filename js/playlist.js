@@ -4,12 +4,13 @@
 var songQueue = new Queue();
 var songCount = 1;
 var playing = false;
-var partyName = window.location.search.split("id")[1];
+var partyName = window.location.search.split("id=")[1];
 var isHost = sessionStorage.getItem("isHost");
 var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
-
+document.title = 'TurnTunes - ' + partyName;
+$('.partyNameText').append('('+partyName+')');
 
 /*******************************************************
   Party UI
