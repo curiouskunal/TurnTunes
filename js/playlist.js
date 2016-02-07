@@ -5,7 +5,7 @@ var songQueue = new Queue();
 var songCount = 1;
 var playing = false;
 var id = String(window.location.search.split("id=")[1]).toLowerCase();
-var isHost = sessionStorage.getItem("isHost");
+var isHost = parseInt(sessionStorage.getItem("isHost"));
 var partyName = partyExists(id, isHost);
 var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
@@ -28,19 +28,8 @@ function partyExists(party, host) {
 }
 
 /*******************************************************
-  Party UI
+  Firebase Data Changes
 *******************************************************/
-if (isHost == 1) {
-  $('#skip-btn').show();
-  $("#song-play").attr('controls', 'controls');
-} else {
-  $('#skip-btn').remove();
-}
-
-$(".brand").click(function () {
-    window.open("/", "_self");
-});
-
 currentRef.on('child_added', function (childSnapshot) {
     var key = childSnapshot.key();
     var song = childSnapshot.val().song;
@@ -48,8 +37,8 @@ currentRef.on('child_added', function (childSnapshot) {
 
     songQueue.enqueue(childSnapshot.val());
     var length = songQueue.getLength();
-    if (length == 1) {
-        $("#empty-plist").hide();
+    if (length == 1 && isHost) {
+        $("#empty-plist").addClass('hide');
         if (!($('#song-play').attr('src')) || !playing) {
             playing = true;
             var newSong = songQueue.dequeue();
@@ -68,12 +57,28 @@ currentRef.on('child_added', function (childSnapshot) {
 nowPlayingRef.on("value", function (snapshot) {
     var newSong = snapshot.val();
     if (newSong != null) {
-        $('#song-play').attr('src', newSong.url);
+      if (isHost)
+          $('#song-play').attr('src', newSong.url);
         $(".np-title").text(newSong.song);
         $(".np-img").attr('src', newSong.img);
     }
 
 }, function (errorObject) {});
+
+/*******************************************************
+  Party UI
+*******************************************************/
+if (isHost == 1) {
+  $('#skip-btn').show();
+  $("#song-play").attr('controls', 'controls');
+} else {
+  $('#skip-btn').remove();
+  $('#song-play').remove();
+}
+
+$(".brand").click(function () {
+    window.open("/", "_self");
+});
 
 $('.search-input').bind("enterKey", function (e) {
     var song = $(this).val().toLowerCase();
@@ -132,4 +137,9 @@ $('#skip-btn').on('click', function () {
       $('#skip-btn').addClass('hide');
     }
     pushNowPlaying(newSong);
+});
+
+$('body').on('click', function() {
+  $('.search-input').val("");
+  $('.search-result').remove();
 });

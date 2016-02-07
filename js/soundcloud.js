@@ -14,11 +14,13 @@ var pushTrack = function(track) {
 };
 
 var pushNowPlaying = function(track) {
-  nowPlayingRef.set({
+  if (isHost) {
+    nowPlayingRef.set({
       'song': track.song,
       'img': track.img,
       'url': track.url
-  });
+    });
+  }
 }
 
 var searchSC = function(query) {
@@ -68,5 +70,6 @@ $(document).on('click', '.search-result', function() {
     var trackIndex = $(this).data('track');
     pushTrack(resultObj[trackIndex]);
     resultObj = [];
+    $('.search-input').val("");
     $('.search-result').remove();
 });
