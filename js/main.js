@@ -22,45 +22,57 @@ function RandomWordComplete(data) {
 RandomWord();
 
 /*******************************************************
+  Party Name Functions
+*******************************************************/
+function verifyParty(party, host) {
+  firebaseRef.once("value", function(snapshot) {
+    var exists = snapshot.child(party).exists();
+    //This is to check for party name if the user is hosting a party
+    if (exists && host) {
+      while (exists) {
+        console.log("here: ", party);
+        RandomWord();
+        dest = sessionStorage.getItem("hostName");
+        exists = snapshot.child(dest).exists();
+      }
+      verifyParty(dest, host);
+    } else if (host) {
+      loadParty(party, host);
+    }
+    //This is to validate the join party name, so users only join existing party
+    if (exists && !host) {
+      loadParty(party, host);
+    } else if (!host) {
+      alert('Party does not exist');
+      $('.join-input').val("");
+    }
+  });
+}
+
+function loadParty(party, host) {
+  var temp = firebaseRef.child(dest);
+  currentRef = temp;
+  sessionStorage.setItem("currentRef", currentRef);
+  sessionStorage.setItem("isHost", host);
+  window.open("party.html?id=" + party,"_self");
+}
+
+/*******************************************************
   Main Page UI
 *******************************************************/
 $("#host-btn").click(function () {
-    var partyExists = false;
-    dest = sessionStorage.getItem("hostName");
-    firebaseRef.once("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var key = childSnapshot.key();
-            if (String(key) === dest) {
-                RandomWord();
-                partyExists = true;
-            }
-        });
-
-        if (!partyExists) {
-            window.location.href = "party.html?id=" + dest;
-            var temp = firebaseRef.child(dest);
-            currentRef = temp;
-            currentRef.set({});
-            sessionStorage.setItem("currentRef", currentRef);
-            sessionStorage.setItem("isHost", 1);
-            return false;
-        };
-    });
-
+  dest = sessionStorage.getItem("hostName");
+  verifyParty(dest, 1);
 });
 
 $('.join-input').keypress(function (e) {
     if (e.which == 13) {
-        dest = $('.join-input').val();
+        dest = $('.join-input').val().toLowerCase();
         if (dest == "") {
             alert("Please specify a party name");
+        } else {
+          verifyParty(dest, 0);
         }
-        window.location.href = "party.html?id=" + dest;
-        var temp = firebaseRef.child(dest);
-        currentRef = temp;
-        sessionStorage.setItem("currentRef", currentRef);
-        sessionStorage.setItem("isHost", 0);
-        return false;
     }
 });
 

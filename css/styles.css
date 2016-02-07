@@ -41,6 +41,11 @@ hr {
     font-size: 5rem;
     text-transform: none;
     margin: 105px 0;
+    cursor: default;
+}
+
+.desc {
+  cursor: default;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -151,6 +156,11 @@ header .header-content .inner p {
     margin: 0 auto;
     text-transform: none;
     color: #fff;
+}
+
+.brand a {
+  color: #fff;
+  text-decoration:none;
 }
 
 .list-group {

@@ -4,12 +4,28 @@
 var songQueue = new Queue();
 var songCount = 1;
 var playing = false;
-var partyName = window.location.search.split("id")[1];
+var id = String(window.location.search.split("id=")[1]).toLowerCase();
+var partyName = partyExists(id);
 var isHost = sessionStorage.getItem("isHost");
 var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
 
+/*******************************************************
+  Party Authentication
+********************************************************/
+function partyExists(party) {
+  var firebaseRef = new Firebase("https://dazzling-torch-8949.firebaseio.com/");
+  firebaseRef.once("value", function(snapshot) {
+    var exists = snapshot.child(party).exists();
+    //This is to check for party name exists
+    if (!exists) {
+      alert("Party does not exist. You will be redirected to the homepage.");
+      window.open("/", "_self");
+    }
+  });
+  return party;
+}
 
 /*******************************************************
   Party UI
