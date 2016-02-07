@@ -94,8 +94,20 @@ $("#search-btn").on('click', function () {
 });
 
 $('.search-input').keyup(function (e) {
+    var inp = String.fromCharCode(event.keyCode);
     if (e.keyCode == 13) {
         $(this).trigger("enterKey");
+    } else if (/[a-zA-Z0-9- ]/.test(inp) || event.keyCode == 8) {
+      var song = $(this).val().toLowerCase();
+      if (song != "")
+        searchSC(song);
+    }
+});
+
+$('.search-input').keydown(function (e) {
+    var inp = String.fromCharCode(event.keyCode);
+    if (/[a-zA-Z0-9- ]/.test(inp) || event.keyCode == 8) {
+      $('.search-result').remove();
     }
 });
 

@@ -31,14 +31,16 @@ var searchSC = function(query) {
 
 var topResults = function(results) {
     var streamable = [];
-    var currentResult, currentTrack, artwork, title;
+    var currentResult, currentTrack, artwork, fullTitle, title;
 
+    $('.search-result').remove();
     for (var i = 0; i < results.length; i++) {
         currentResult = results[i];
 
         if (currentResult.streamable) {
             artwork = currentResult.artwork_url;
-            title = currentResult.title + " - " + currentResult.user.username;
+            title = currentResult.title;
+            fullTitle = title + " - " + currentResult.user.username;
 
             if (artwork == null) {
                 artwork = "img/cover-art.png";
@@ -53,7 +55,7 @@ var topResults = function(results) {
             };
 
             streamable.push(currentTrack);
-            $('.search').append('<li data-track="' + i + '" class="search-result list-group-item">' + title + '</li>');
+            $('.search').append('<li data-track="' + i + '" class="search-result list-group-item">' + fullTitle + '</li>');
             resultObj[i] = currentTrack;
         }
     }
