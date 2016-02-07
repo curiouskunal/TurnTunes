@@ -13,6 +13,14 @@ var pushTrack = function(track) {
     });
 };
 
+var pushNowPlaying = function(track) {
+  nowPlayingRef.set({
+      'song': track.song,
+      'img': track.img,
+      'url': track.url
+  });
+}
+
 var searchSC = function(query) {
     SC.get('/tracks', {
         q: query
