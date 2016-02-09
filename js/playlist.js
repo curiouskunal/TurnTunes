@@ -21,7 +21,7 @@ function partyExists(party, host) {
     //This is to check for party name exists
     if (!exists && !host) {
       alert("Party does not exist. You will be redirected to the homepage.");
-      window.open("/", "_self");
+      window.open("index.html", "_self");
     }
   });
   return party;
@@ -37,8 +37,10 @@ currentRef.on('child_added', function (childSnapshot) {
 
     songQueue.enqueue(childSnapshot.val());
     var length = songQueue.getLength();
+    if (length) {
+      $("#empty-plist").addClass('hide');
+    }
     if (length == 1 && isHost) {
-        $("#empty-plist").addClass('hide');
         if (!($('#song-play').attr('src')) || !playing) {
             playing = true;
             var newSong = songQueue.dequeue();
@@ -57,8 +59,7 @@ currentRef.on('child_added', function (childSnapshot) {
 nowPlayingRef.on("value", function (snapshot) {
     var newSong = snapshot.val();
     if (newSong != null) {
-      if (isHost)
-          $('#song-play').attr('src', newSong.url);
+        $('#song-play').attr('src', newSong.url);
         $(".np-title").text(newSong.song);
         $(".np-img").attr('src', newSong.img);
     }
@@ -69,15 +70,14 @@ nowPlayingRef.on("value", function (snapshot) {
   Party UI
 *******************************************************/
 if (isHost == 1) {
-  $('#skip-btn').show();
+  //$('#skip-btn').show();
   $("#song-play").attr('controls', 'controls');
 } else {
   $('#skip-btn').remove();
-  $('#song-play').remove();
 }
 
 $(".brand").click(function () {
-    window.open("/", "_self");
+    window.open("index.html", "_self");
 });
 
 $('.search-input').bind("enterKey", function (e) {
@@ -139,7 +139,9 @@ $('#skip-btn').on('click', function () {
     pushNowPlaying(newSong);
 });
 
-$('body').on('click', function() {
-  $('.search-input').val("");
-  $('.search-result').remove();
+$('body').on('click keyup', function(e) {
+  if (e.type === "click" || e.keyCode == 27) {
+    $('.search-input').val("");
+    $('.search-result').remove();
+  }
 });
