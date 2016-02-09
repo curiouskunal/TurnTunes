@@ -13,6 +13,16 @@ var pushTrack = function(track) {
     });
 };
 
+var pushNowPlaying = function(track) {
+  if (isHost) {
+    nowPlayingRef.set({
+      'song': track.song,
+      'img': track.img,
+      'url': track.url
+    });
+  }
+}
+
 var searchSC = function(query) {
     SC.get('/tracks', {
         q: query
@@ -23,14 +33,16 @@ var searchSC = function(query) {
 
 var topResults = function(results) {
     var streamable = [];
-    var currentResult, currentTrack, artwork, title;
+    var currentResult, currentTrack, artwork, fullTitle, title;
 
+    $('.search-result').remove();
     for (var i = 0; i < results.length; i++) {
         currentResult = results[i];
 
         if (currentResult.streamable) {
             artwork = currentResult.artwork_url;
-            title = currentResult.title + " - " + currentResult.user.username;
+            title = currentResult.title;
+            fullTitle = title + " - " + currentResult.user.username;
 
             if (artwork == null) {
                 artwork = "img/cover-art.png";
@@ -45,7 +57,7 @@ var topResults = function(results) {
             };
 
             streamable.push(currentTrack);
-            $('.search').append('<li data-track="' + i + '" class="search-result list-group-item">' + title + '</li>');
+            $('.search').append('<li data-track="' + i + '" class="search-result list-group-item">' + fullTitle + '</li>');
             resultObj[i] = currentTrack;
         }
     }
@@ -58,5 +70,6 @@ $(document).on('click', '.search-result', function() {
     var trackIndex = $(this).data('track');
     pushTrack(resultObj[trackIndex]);
     resultObj = [];
+    $('.search-input').val("");
     $('.search-result').remove();
 });

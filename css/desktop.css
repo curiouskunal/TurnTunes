@@ -28,7 +28,7 @@
 
 	#search-btn {
 		width: 100%;
-		margin: 0 auto;
+		margin: 10px auto;
 		padding: 7px 10px;
 	}
 
@@ -45,4 +45,12 @@
 		padding: 2%;
 	}
 
+}
+
+@media (min-width: 990px) {
+	#search-btn {
+		width: 100%;
+		margin: 0 auto;
+		padding: 7px 10px;
+	}
 }
