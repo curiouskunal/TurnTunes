@@ -73,6 +73,10 @@ nowPlayingRef.on("value", function (snapshot) {
 *******************************************************/
 if (isHost == 1) {
   //$('#skip-btn').show();
+  var mainRef = new Firebase(url);
+  mainRef.update({
+    "platform": "web"
+  });
   $("#song-play").attr('controls', 'controls');
 } else {
   $('#skip-btn').remove();
