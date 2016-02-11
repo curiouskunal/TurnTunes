@@ -22,8 +22,8 @@
 	}
 
 	.brand {
-		font-size: 6rem;
-		padding: 2% 0 1% 0;
+		font-size: 5rem;
+		padding: 1% 0 1% 0;
 	}
 
 	#search-btn {
@@ -43,6 +43,10 @@
 
 	#now-playing {
 		padding: 2%;
+	}
+
+	.np-img {
+		margin: 2% 0;
 	}
 
 }

@@ -1,7 +1,8 @@
 /*******************************************************
-  Globals
-*******************************************************/
-var songQueue = new Queue();
+ Globals
+ *******************************************************/
+var songQueue;
+songQueue = new Queue();
 var songCount = 1;
 var playing = false;
 var id = String(window.location.search.split("id=")[1]).toLowerCase();
@@ -10,7 +11,7 @@ var partyName = partyExists(id, isHost);
 var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
-document.title = 'TurnTunes - ' + partyName;
+document.title = 'TurnTunes';
 $('.partyNameText').append('('+partyName+')');
 
 /*******************************************************
@@ -64,6 +65,7 @@ nowPlayingRef.on("value", function (snapshot) {
         $('#song-play').attr('src', newSong.url);
         $(".np-title").text(newSong.song);
         $(".np-img").attr('src', newSong.img);
+        document.title = newSong.song + ' - TurnTunes'
     }
 
 }, function (errorObject) {});
