@@ -12,7 +12,7 @@ var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
 document.title = 'TurnTunes';
-$('.partyNameText').append('('+partyName+')');
+$('.partyNameText').append(partyName);
 
 /*******************************************************
   Party Authentication

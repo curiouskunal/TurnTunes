@@ -287,3 +287,13 @@ ul {
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: #D24D57;
 }
+
+.partyNameText {
+  font-family: 'Ruthless', cursive;
+  text-align: left;
+}
+
+.userCountText {
+  font-family: 'Ruthless', cursive;
+  text-align: right;
+}
