@@ -137,7 +137,7 @@ header .header-content .inner p {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
     font-size: inherit;
     color: #fff;
-    background-color:rgba(0,0,0,0.9);
+    background-color:rgba(0,0,0,0.8);
     cursor: pointer;
     padding: 10px 20px;
     display: inline-block;
@@ -150,11 +150,13 @@ header .header-content .inner p {
 }
 
 .brand {
-    font-size: 4rem;
-    padding: 4% 0 2% 0;
+  font-family: 'Ruthless', cursive;
+    font-size: 2.5rem;
+    padding: 10px 0 0 10px;
     margin: 0 auto;
     text-transform: none;
     color: #fff;
+    cursor: pointer;
 }
 
 .brand a {
@@ -168,7 +170,7 @@ header .header-content .inner p {
 }
 
 .list-group-item {
-    background-color:rgba(0,0,0,0.9);
+    background-color:rgba(0,0,0,0.7);
     border: 2px solid #D24D57;
 }
 
@@ -196,6 +198,10 @@ header .header-content .inner p {
   margin: 10px auto;
   padding: 10px;
   margin-bottom: 5%;
+}
+
+#add {
+  margin-bottom: 2%;
 }
 
 ul {
@@ -296,14 +302,9 @@ ul {
 }
 
 .brand img {
-  border-radius: 50%;
-  -webkit-transition: -webkit-transform .8s ease-in-out;
-  transition: transform .8s ease-in-out;
+  display: none;
 }
-.brand img:hover {
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
+
 
 .partyInfo {
   font-size: 2rem;

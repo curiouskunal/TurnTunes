@@ -32,6 +32,8 @@ function partyExists(party, host) {
   return party;
 }
 
+
+
 /*******************************************************
   Firebase Data Changes
 *******************************************************/
@@ -102,11 +104,11 @@ $(document).ready(function() {
   } else {
     $('#skip-btn').remove();
   }
+
 });
 
-window.onbeforeunload = function(){
+window.onunload = function(){
   removeUser();
-  return 'Are you sure you want to stop listening?';
 };
 
 $(".brand").click(function () {
