@@ -165,8 +165,10 @@ header .header-content .inner p {
 }
 
 .list-group {
-
     color: #fff;
+    overflow: hidden;
+    overflow-y: auto;
+    max-height: 431px;
 }
 
 .list-group-item {
@@ -214,7 +216,7 @@ ul {
   border-top: 0;
   overflow-y: scroll;
   position:absolute;
-  z-index:1;
+  z-index:2;
   width: calc(100% - 30px);
   display: block;
 }
@@ -305,7 +307,6 @@ ul {
   display: none;
 }
 
-
 .partyInfo {
   font-size: 2rem;
   padding-top: 2%;
@@ -314,4 +315,21 @@ ul {
 
 .info {
   margin-right: 5%;
+}
+
+.current-song {
+  border-color: #58D14D;
+  z-index: 1;
+}
+
+.current-song > span {
+  background-color: #58D14D;
+}
+
+.current-song + li {
+  border-top-color: #58D14D;
+}
+
+.next-song {
+  border-bottom-color: #58D14D;
 }

@@ -47,6 +47,17 @@ currentRef.on('child_added', function (childSnapshot) {
     if (length) {
       $("#empty-plist").addClass('hide');
     }
+    //To apply the border-color when songs are added during edge cases
+    var curSong = $('.current-song').attr("id");
+    curSong = (curSong) ? parseInt(curSong.split("-")[1]) : 0;
+    var isPlaying = "";
+    if (curSong === 0)
+      isPlaying = "current-song";
+    else if (curSong === songCount - 1)
+      isPlaying = "next-song";
+
+    $('.playlist').prepend('<li class="list-group-item ' + isPlaying + '" id="song-' + songCount + '"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
+
     if (length == 1 && isHost) {
         if (!($('#song-play').attr('src')) || !playing) {
             playing = true;
@@ -58,8 +69,6 @@ currentRef.on('child_added', function (childSnapshot) {
     } else if (length == 2) {
       $('#skip-btn').removeClass('hide');
     }
-
-    $('.playlist').append('<li class="list-group-item"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
     songCount++;
 });
 
@@ -70,6 +79,7 @@ nowPlayingRef.on("value", function (snapshot) {
         $(".np-title").text(newSong.song);
         $(".np-img").attr('src', newSong.img);
         document.title = newSong.song + ' - TurnTunes'
+        changeCurrentSong(newSong);
     }
 
 }, function (errorObject) {});
@@ -92,6 +102,18 @@ function removeUser() {
   usersRef.transaction(function (current_value) {
   return (current_value || 0) - 1;
   });
+}
+
+/*******************************************************
+  Party UI Changes
+*******************************************************/
+function changeCurrentSong(song) {
+  var oldId = song.song_id - 1;
+  if (oldId > 0)
+    $('#song-' + oldId).removeClass('current-song');
+  $('#song-' + song.song_id).addClass('current-song');
+  $('.current-song').removeClass('next-song');
+  $('.current-song').prev('li').addClass('next-song');
 }
 
 /*******************************************************
@@ -162,6 +184,9 @@ $('#song-play').on('ended', function () {
         }
     } else {
         playing = false;
+        //Hide the currently playing color scheme
+        var songId = songCount - 1;
+        $('#song-' + songId).removeClass('current-song');
     }
 
 });

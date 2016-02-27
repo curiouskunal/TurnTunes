@@ -5,11 +5,12 @@ SC.initialize({
     client_id: clientId
 });
 
-var pushTrack = function(track) {
+var pushTrack = function(track, song_id) {
     currentRef.push({
         'song': track.song,
         'img': track.img,
-        'url': track.url
+        'url': track.url,
+        'song_id': song_id
     });
 };
 
@@ -18,7 +19,8 @@ var pushNowPlaying = function(track) {
     nowPlayingRef.set({
       'song': track.song,
       'img': track.img,
-      'url': track.url
+      'url': track.url,
+      'song_id': track.song_id
     });
   }
 }
@@ -68,7 +70,7 @@ var topResults = function(results) {
 
 $(document).on('click', '.search-result', function() {
     var trackIndex = $(this).data('track');
-    pushTrack(resultObj[trackIndex]);
+    pushTrack(resultObj[trackIndex], songCount);
     resultObj = [];
     $('.search-input').val("");
     $('.search-result').remove();
