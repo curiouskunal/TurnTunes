@@ -150,7 +150,6 @@ header .header-content .inner p {
 }
 
 .brand {
-    font-family: 'Ruthless', cursive;
     font-size: 4rem;
     padding: 4% 0 2% 0;
     margin: 0 auto;
@@ -304,4 +303,14 @@ ul {
 .brand img:hover {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
+}
+
+.partyInfo {
+  font-size: 2rem;
+  padding-top: 2%;
+  text-align: right;
+}
+
+.info {
+  margin-right: 5%;
 }

@@ -11,6 +11,8 @@ var partyName = partyExists(id, isHost);
 var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
+var usersRef = new Firebase(url + "/users");
+
 document.title = 'TurnTunes';
 $('.partyNameText').append(partyName);
 
@@ -71,18 +73,41 @@ nowPlayingRef.on("value", function (snapshot) {
 }, function (errorObject) {});
 
 /*******************************************************
+  User Functions
+*******************************************************/
+usersRef.on("value", function (snapshot) {
+  var count = snapshot.val();
+  $('.userCountText').text(count);
+});
+
+function addUser() {
+  usersRef.transaction(function (current_value) {
+  return (current_value || 0) + 1;
+  });
+}
+
+function removeUser() {
+  usersRef.transaction(function (current_value) {
+  return (current_value || 0) - 1;
+  });
+}
+
+/*******************************************************
   Party UI
 *******************************************************/
-if (isHost == 1) {
-  //$('#skip-btn').show();
-  var mainRef = new Firebase(url);
-  mainRef.update({
-    "platform": "web"
-  });
-  $("#song-play").attr('controls', 'controls');
-} else {
-  $('#skip-btn').remove();
-}
+$(document).ready(function() {
+  addUser();
+  if (isHost == 1) {
+    $("#song-play").attr('controls', 'controls');
+  } else {
+    $('#skip-btn').remove();
+  }
+});
+
+window.onbeforeunload = function(){
+  removeUser();
+  return 'Are you sure you want to stop listening?';
+};
 
 $(".brand").click(function () {
     window.open("index.html", "_self");
