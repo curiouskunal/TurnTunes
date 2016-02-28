@@ -59,6 +59,7 @@ currentRef.on('child_added', function (childSnapshot) {
     var key = childSnapshot.key();
     var song = childSnapshot.val().song;
     var url = childSnapshot.val().url;
+    var song_id = childSnapshot.val().song_id;
 
     songQueue.enqueue(childSnapshot.val());
     var length = songQueue.getLength();
@@ -75,6 +76,10 @@ currentRef.on('child_added', function (childSnapshot) {
       isPlaying = "next-song";
     else if (!isHost && songCount === curSong)
       isPlaying = "current-song";
+
+    if (!isHost && song_id <= curSong)
+      songQueue.dequeue();
+
 
     $('.playlist').prepend('<li class="list-group-item ' + isPlaying + '" id="song-' + songCount + '"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
 
