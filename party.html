@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 
 <head>
     <meta charset="utf-8">
@@ -16,6 +16,8 @@
 </head>
 
 <body>
+  <div id="fb-root"></div>
+  <script type="text/javascript" src="js/social.js"></script>
   <div class="html-mobile-background"></div>
 <div class="container">
   <div class="row">
@@ -46,9 +48,14 @@
 
       <section id="now-playing">
         <div class="container">
-          <div class="row">
-              <div class="col-xs-12">
+          <div class="row row-eq-height">
+              <div class="col-xs-12 col-md-8">
                   <h1>Now Playing</h1>
+              </div>
+              <div class="col-xs-12 col-md-4">
+                <div class="fb-share-button share-btn" data-href="" data-layout="button"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button share-btn" data-url="" data-text="Join the party at TurnTunes.com!">Tweet</a>
+                <a href="#" class="url-share-button share-btn"><i class="fa fa-share"><span> Copy</span></i></a>
               </div>
           </div>
 
