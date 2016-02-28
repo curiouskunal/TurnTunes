@@ -67,8 +67,6 @@ currentRef.on('child_added', function (childSnapshot) {
       $("#empty-plist").addClass('hide');
     }
     //To apply the border-color when songs are added during edge cases
-    // var curSong = $('.current-song').attr("id");
-    // curSong = (curSong) ? parseInt(curSong.split("-")[1]) : 0;
     var isPlaying = "";
     if (curSong === 0)
       isPlaying = "current-song";
@@ -76,10 +74,6 @@ currentRef.on('child_added', function (childSnapshot) {
       isPlaying = "next-song";
     else if (!isHost && songCount === curSong)
       isPlaying = "current-song";
-
-    if (!isHost && song_id <= curSong)
-      songQueue.dequeue();
-
 
     $('.playlist').prepend('<li class="list-group-item ' + isPlaying + '" id="song-' + songCount + '"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
 
@@ -135,8 +129,6 @@ function removeUser() {
 *******************************************************/
 function changeCurrentSong(song) {
   var oldId = curSong + 1;
-  // if (oldId > 0)
-  //   $('#song-' + oldId).removeClass('current-song');
   $('#song-' + oldId).removeClass('next-song');
   $('#song-' + curSong).removeClass('current-song');
   $('#song-' + song.song_id).addClass('current-song');
@@ -201,6 +193,9 @@ $('.search-input').keydown(function (e) {
 });
 
 $('#song-play').on('ended', function () {
+    //Hide the currently playing color scheme
+    var songId = songCount - 1;
+    $('#song-' + songId).removeClass('current-song');
     if (songQueue.peek()) {
         var newSong = songQueue.dequeue();
         if (isHost) {
@@ -211,11 +206,7 @@ $('#song-play').on('ended', function () {
         }
     } else {
         playing = false;
-        //Hide the currently playing color scheme
-        var songId = songCount - 1;
-        $('#song-' + songId).removeClass('current-song');
     }
-
 });
 
 $('#skip-btn').on('click', function () {
