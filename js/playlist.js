@@ -12,6 +12,7 @@ var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;
 var nowPlayingRef = new Firebase(url + "/now-playing");
 var currentRef = new Firebase(url + "/playlist");
 var usersRef = new Firebase(url + "/users");
+var curSong = 0;
 
 document.title = 'TurnTunes';
 $('.partyNameText').append(partyName);
@@ -48,13 +49,15 @@ currentRef.on('child_added', function (childSnapshot) {
       $("#empty-plist").addClass('hide');
     }
     //To apply the border-color when songs are added during edge cases
-    var curSong = $('.current-song').attr("id");
-    curSong = (curSong) ? parseInt(curSong.split("-")[1]) : 0;
+    // var curSong = $('.current-song').attr("id");
+    // curSong = (curSong) ? parseInt(curSong.split("-")[1]) : 0;
     var isPlaying = "";
     if (curSong === 0)
       isPlaying = "current-song";
     else if (curSong === songCount - 1)
       isPlaying = "next-song";
+    else if (!isHost && songCount === curSong)
+      isPlaying = "current-song";
 
     $('.playlist').prepend('<li class="list-group-item ' + isPlaying + '" id="song-' + songCount + '"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
 
@@ -78,8 +81,9 @@ nowPlayingRef.on("value", function (snapshot) {
         $('#song-play').attr('src', newSong.url);
         $(".np-title").text(newSong.song);
         $(".np-img").attr('src', newSong.img);
-        document.title = newSong.song + ' - TurnTunes'
         changeCurrentSong(newSong);
+        curSong = newSong.song_id;
+        document.title = newSong.song + ' - TurnTunes'
     }
 
 }, function (errorObject) {});
@@ -108,9 +112,11 @@ function removeUser() {
   Party UI Changes
 *******************************************************/
 function changeCurrentSong(song) {
-  var oldId = song.song_id - 1;
-  if (oldId > 0)
-    $('#song-' + oldId).removeClass('current-song');
+  var oldId = curSong + 1;
+  // if (oldId > 0)
+  //   $('#song-' + oldId).removeClass('current-song');
+  $('#song-' + oldId).removeClass('next-song');
+  $('#song-' + curSong).removeClass('current-song');
   $('#song-' + song.song_id).addClass('current-song');
   $('.current-song').removeClass('next-song');
   $('.current-song').prev('li').addClass('next-song');
@@ -126,7 +132,6 @@ $(document).ready(function() {
   } else {
     $('#skip-btn').remove();
   }
-
 });
 
 window.onunload = function(){
