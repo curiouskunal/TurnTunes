@@ -18,23 +18,6 @@ document.title = 'TurnTunes';
 $('.partyNameText').append(partyName);
 
 /*******************************************************
-  Share Buttons
-********************************************************/
-$('.fb-share-button').attr("data-href", "http://turntunes.com/party.html?id=" + partyName);
-$('.twitter-share-button').attr("data-url", "http://turntunes.com/party.html?id=" + partyName);
-$('.url-share-button').on('click', function() {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val("http://turntunes.com/party.html?id=" + partyName).select();
-  document.execCommand("copy");
-  $temp.remove();
-  $(this).find('i span').text("Copied");
-  setTimeout(function() {
-    $('.url-share-button').find('i span').text("Copy");
-  }, 2000);
-});
-
-/*******************************************************
   Party Authentication
 ********************************************************/
 function partyExists(party, host) {
@@ -49,7 +32,6 @@ function partyExists(party, host) {
   });
   return party;
 }
-
 
 
 /*******************************************************

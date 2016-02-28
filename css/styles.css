@@ -172,9 +172,15 @@ header .header-content .inner p {
 }
 
 .list-group-item {
-    background-color:rgba(0,0,0,0.7);
-    border: 2px solid #D24D57;
+    background-color:rgba(0,0,0,0.85);
+    border: 1px solid #D24D57;
+    margin-bottom: 0px;
 }
+
+.search-result {
+  cursor: pointer;
+}
+
 
 .label-default {
     background-color: #D24D57;
@@ -265,7 +271,7 @@ ul {
 }
 /* scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 /* Track */
@@ -317,39 +323,18 @@ ul {
   margin-right: 5%;
 }
 
-.current-song {
-  border-color: #58D14D;
-  z-index: 1;
-}
 
 .current-song > span {
-  background-color: #58D14D;
-}
-
-.current-song + li {
-  border-top-color: #58D14D;
-}
-
-.next-song {
-  border-bottom-color: #58D14D;
+  background-color: #26A65B;
 }
 
 /** Social Button CSS **/
-.url-share-button {
-  border: none;
-  border-radius: 4px;
-  padding: 3.5px 6px 3.5px 6px;
-  background-color: #FFF;
-  text-decoration: none;
-  font-size: 12px;
-  color: #000;
-  width: 60px;
-  height: 20px;
-}
-
 .url-share-button:hover {
   color: #D24D57;
-  background-color: #E1E1E1;
+}
+
+.share-btn:hover {
+  color: #D24D57;
 }
 
 .url-share-button i span {
@@ -359,4 +344,14 @@ ul {
 .share-btn {
   margin: 4px 4px 4px 4px ;
   vertical-align: super;
+  cursor: pointer;
+}
+
+i.share-btn {
+  font-size: 25px;
+}
+
+.share-buttons {
+  padding-top: 20px;
+  margin-left:auto; margin-right:0;
 }

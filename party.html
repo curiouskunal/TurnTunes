@@ -34,7 +34,7 @@
       <i class="fa fa-home"></i>
       <span class="partyNameText info"></span>
 
-      <i class="fa fa-users"></i>
+      <i class="fa fa-users"></i></a>
       <span class="userCountText info">Users</span>
     </div>
   </div>
@@ -49,13 +49,14 @@
       <section id="now-playing">
         <div class="container">
           <div class="row row-eq-height">
-              <div class="col-xs-12 col-md-8">
+              <div class="col-xs-8 col-md-8">
                   <h1>Now Playing</h1>
               </div>
-              <div class="col-xs-12 col-md-4">
-                <div class="fb-share-button share-btn" data-href="" data-layout="button"></div>
-                <a href="https://twitter.com/share" class="twitter-share-button share-btn" data-url="" data-text="Join the party at TurnTunes.com!">Tweet</a>
-                <a href="#" class="url-share-button share-btn"><i class="fa fa-share"><span> Copy</span></i></a>
+              <div class="col-xs-4 col-md-4 share-buttons" align="right">
+                <i class="copy share-btn url-share-button fa fa-share-square" data-toggle="tooltip" title="Copy Link"></i>
+                <i class="fb share-btn fa fa-facebook-square"></i>
+                <i class="tweet share-btn fa fa-twitter-square"></i>
+
               </div>
           </div>
 
@@ -146,6 +147,7 @@
   <script src="js/queue.js"></script>
   <script src="js/playlist.js"></script>
   <script src="js/soundcloud.js"></script>
+  <script src="js/social.js"></script>
 </body>
 
 </html>
