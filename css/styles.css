@@ -174,7 +174,7 @@ header .header-content .inner p {
 .list-group-item {
     background-color:rgba(0,0,0,0.85);
     border: 1px solid #D24D57;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .search-result {
@@ -220,6 +220,7 @@ ul {
 .search {
   max-height: 200px;
   border-top: 0;
+  overflow: hidden;
   overflow-y: scroll;
   position:absolute;
   z-index:2;
@@ -229,7 +230,7 @@ ul {
 
 .search li {
   border: 0;
-  border-bottom: : 2px solid #454545;
+  border-bottom: 2px solid #454545;
 
 }
 
@@ -354,4 +355,48 @@ i.share-btn {
 .share-buttons {
   padding-top: 20px;
   margin-left:auto; margin-right:0;
+}
+
+/*Fixed header*/
+.header {
+  width: inherit;
+  position: fixed;
+  top: 0px;
+  background-color: #191919;
+  z-index: 200;
+}
+
+.header .row {
+  height: 50px;
+  width: 75%;
+  margin: 0px auto;
+}
+
+section {
+  margin: 25px auto;
+}
+
+/*Chat box*/
+#chat {
+  width: 100%;
+  position: fixed;
+  height: 100vh;
+  background-color: rgba(0,0,0,1);
+  border-left: 2px solid #D24D57;
+}
+
+.chat-box {
+  bottom: 0;
+  position: fixed;
+}
+
+.chat-msg {
+  height: inherit;
+  overflow: hidden;
+  overflow-y: scroll;
+  color: #FFF;
+}
+
+#chat-input {
+  color: #000;
 }

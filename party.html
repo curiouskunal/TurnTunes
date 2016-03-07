@@ -19,126 +19,139 @@
   <div id="fb-root"></div>
   <script type="text/javascript" src="js/social.js"></script>
   <div class="html-mobile-background"></div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-4 col-md-4 brand">
-      <img src="img/brand.png" width="60px">
-      <span class="brand">TurnTunes</span>
-    </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10 col-xs-12">
+        <div class="container header">
+           <div class="row">
+            <div class="col-xs-4 col-md-4 brand">
+              <img src="img/brand.png" width="60px">
+              <span class="brand">TurnTunes</span>
+            </div>
 
-    <div class="col-md-4">
+            <div class="col-md-4">
 
-    </div>
+            </div>
 
-    <div class="col-xs-8 col-md-4 partyInfo">
-      <i class="fa fa-home"></i>
-      <span class="partyNameText info"></span>
+            <div class="col-xs-8 col-md-4 partyInfo">
+              <i class="fa fa-home"></i>
+              <span class="partyNameText info"></span>
 
-      <i class="fa fa-users"></i></a>
-      <span class="userCountText info">Users</span>
-    </div>
-  </div>
-
-</div>
-      <section id="party-info">
-        <div class="container">
-
+              <i class="fa fa-users"></i></a>
+              <span class="userCountText info">Users</span>
+            </div>
+          </div>
         </div>
-      </section>
+        <section id="party-info">
+          <div class="container">
 
-      <section id="now-playing">
-        <div class="container">
-          <div class="row row-eq-height">
-              <div class="col-xs-8 col-md-8">
-                  <h1>Now Playing</h1>
+          </div>
+        </section>
+
+        <section id="now-playing">
+          <div class="container">
+            <div class="row row-eq-height">
+                <div class="col-xs-8 col-md-8">
+                    <h1>Now Playing</h1>
+                </div>
+                <div class="col-xs-4 col-md-4 share-buttons" align="right">
+                  <i class="copy share-btn url-share-button fa fa-share-square" data-toggle="tooltip" title="Copy Link"></i>
+                  <i class="fb share-btn fa fa-facebook-square"></i>
+                  <i class="tweet share-btn fa fa-twitter-square"></i>
+
+                </div>
+            </div>
+
+          <div align="center">
+
+              <div class="row">
+                  <div class="col-xs-12">
+                      <img class="np-img img-rounded" src="img/default-art.png">
+                  </div>
               </div>
-              <div class="col-xs-4 col-md-4 share-buttons" align="right">
-                <i class="copy share-btn url-share-button fa fa-share-square" data-toggle="tooltip" title="Copy Link"></i>
-                <i class="fb share-btn fa fa-facebook-square"></i>
-                <i class="tweet share-btn fa fa-twitter-square"></i>
 
+              <div class="row">
+                  <div class="col-xs-12">
+                      <div class="np-title-wrapper">
+                        <span class="np-title" align="center"></span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-6 col-md-offset-3 col-xs-12">
+                      <audio id="song-play" autoplay="true">
+                          <source src="" type="audio/mp3">
+                      </audio>
+                      <br>
+                      <button class="btn btn-6 btn-6c hide" id="skip-btn">Skip Song</button>
+                  </div>
+              </div>
+          </div>
+          </div>
+        </section>
+
+        <section id="add">
+          <div class="container">
+          <div class="row">
+              <div class="col-xs-12">
+                  <h1 class="alt">Add Songs</h1>
+                  <br>
               </div>
           </div>
 
-        <div align="center">
+          <div class="row">
+              <div class="col-md-8 col-md-offset-1 col-xs-12">
+                <h4>Drop in some &#128293;&#128293;&#128293; from SoundCloud.</h4>
+             </div>
+         </div>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <img class="np-img img-rounded" src="img/default-art.png">
-                </div>
-            </div>
+          <div class="row">
+              <div class="col-md-8 col-md-offset-1 col-xs-12">
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="np-title-wrapper">
-                      <span class="np-title" align="center"></span>
-                    </div>
-                </div>
-            </div>
+                  <input class="search-input" type="text" name="songid">
+                  <ul class="search"></ul>
+              </div>
 
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 col-xs-12">
-                    <audio id="song-play" autoplay="true">
-                        <source src="" type="audio/mp3">
-                    </audio>
-                    <br>
-                    <button class="btn btn-6 btn-6c hide" id="skip-btn">Skip Song</button>
-                </div>
-            </div>
+              <div class="col-md-2 col-xs-12">
+                  <button class="btn btn-6 btn-6c" id="search-btn">Search</button>
+              </div>
+          </div>
         </div>
+        </section>
+
+        <section id="playlist">
+          <div class="container">
+          <div class="row">
+              <div class="col-xs-12">
+                  <h1 class="alt">Playlist</h1>
+                  <br>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-10 col-md-offset-1 col-xs-12">
+                  <ul class="list-group playlist">
+                      <li class="list-group-item" id="empty-plist">
+                          <span class="label label-default label-pill pull-xs-right"></span> Let's get this party started! Add some songs below.
+                      </li>
+                  </ul>
+              </div>
+          </div>
         </div>
-      </section>
-
-      <section id="add">
-        <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1 class="alt">Add Songs</h1>
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-1 col-xs-12">
-              <h4>Drop in some &#128293;&#128293;&#128293; from SoundCloud.</h4>
-           </div>
-       </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-1 col-xs-12">
-
-                <input class="search-input" type="text" name="songid">
-                <ul class="search"></ul>
-            </div>
-
-            <div class="col-md-2 col-xs-12">
-                <button class="btn btn-6 btn-6c" id="search-btn">Search</button>
-            </div>
+        </section>
+      </div>
+      <div class="col-md-2 col-xs-12">
+        <div id="chat">
+          <div class="chat-msg">
+          </div>
+          <div class="chat-box">
+            <input type="text" id="chat-input">
+          </div>
         </div>
       </div>
-      </section>
-
-      <section id="playlist">
-        <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1 class="alt">Playlist</h1>
-                <br>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <ul class="list-group playlist">
-                    <li class="list-group-item" id="empty-plist">
-                        <span class="label label-default label-pill pull-xs-right"></span> Let's get this party started! Add some songs below.
-                    </li>
-                </ul>
-            </div>
-        </div>
-      </div>
-      </section>
-
+    </div>
+  </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -147,6 +160,7 @@
   <script src="js/queue.js"></script>
   <script src="js/playlist.js"></script>
   <script src="js/soundcloud.js"></script>
+  <script src="js/chat.js"></script>
 </body>
 
 </html>
