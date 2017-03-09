@@ -6,7 +6,7 @@ songQueue = new Queue();
 var songCount = 1;
 var playing = false;
 var id = String(window.location.search.split("id=")[1]).toLowerCase();// Room ID
-var isHost = parseInt(sessionStorage.getItem("isHost"));              // Type: Boolean
+var isHost = parseInt(sessionStorage.getItem("isHost"));              // Type: int with val of 1 or  0
 var partyName = partyExists(id, isHost);                              // sets partyName if ID is a valid RoomID 
 var url = "https://dazzling-torch-8949.firebaseio.com/" + partyName;  // Database URL
 var nowPlayingRef = new Firebase(url + "/now-playing");               // Reference to now playing in Database
@@ -14,7 +14,7 @@ var currentRef = new Firebase(url + "/playlist");                     // Referen
 var usersRef = new Firebase(url + "/users");                          // reference to list of users in room
 var curSong = 0;                                                      // current song reference in playlist
 
-document.title = 'TurntUnes';          // default HTML page tile
+document.title = 'TurnTunes';          // HTML page tile
 $('.partyNameText').append(partyName); // adds room ID to party.HTML page 
 
 /*******************************************************
@@ -47,7 +47,7 @@ function partyExists(party, host) {
 currentRef.on('child_added', function (childSnapshot) {
     var key = childSnapshot.key();            // snapshot key
     var song = childSnapshot.val().song;      // stores value of the newly added song
-    var url = childSnapshot.val().url;        // 
+
     var song_id = childSnapshot.val().song_id;// data base id of the newly added song
     
     songQueue.enqueue(childSnapshot.val());   // adds the newly added song to the playlist queue
@@ -68,7 +68,7 @@ currentRef.on('child_added', function (childSnapshot) {
     else if (!isHost && songCount === curSong)
       isPlaying = "current-song";
 
-    // Adding song name and number to the playlist list on the party HTML page 
+    // Adding song name and number to the playlist on the party HTML page 
     $('.playlist').prepend('<li class="list-group-item ' + isPlaying + '" id="song-' + songCount + '"><span class="label label-default label-pill pull-xs-right">' + songCount + '</span>' + song + '</li>');
 
     // start playing the added song if queue has 1 song and you are the host 
@@ -77,14 +77,14 @@ currentRef.on('child_added', function (childSnapshot) {
         if (!($('#song-play').attr('src')) || !playing) {
             playing = true;                   // start playing song
             var newSong = songQueue.dequeue();// remove the song from playlist queue once started playing
-            pushNowPlaying(newSong);          // add the song to new playing list
+            pushNowPlaying(newSong);          // set newSong as the "Now Playing" song
         // when playing last song in queue hide skip button
         } else if (playing) {
           $('#skip-btn').removeClass('hide'); // hides HTML id by using hide class's CSS style 
         }
     // when playlist queue length is 2    
     } else if (length == 2) {
-      $('#skip-btn').removeClass('hide'); // Shows HTML id by removing hide class
+      $('#skip-btn').removeClass('hide'); // Shows skip button when queue length is greater than two
     }
     songCount++;
 });
@@ -93,9 +93,9 @@ currentRef.on('child_added', function (childSnapshot) {
 nowPlayingRef.on("value", function (snapshot) {
     var newSong = snapshot.val();
     if (newSong != null) {
-        $('#song-play').attr('src', newSong.url);     // send song url to party.html HTML ID
-        $(".np-title").text(newSong.song);            // send song tile to party.html HTML class
-        $(".np-img").attr('src', newSong.img);        // send song artwork to party.html HTML class
+        $('#song-play').attr('src', newSong.url);     // set song url to party.html HTML ID
+        $(".np-title").text(newSong.song);            // set song tile to party.html HTML class
+        $(".np-img").attr('src', newSong.img);        // set song artwork to party.html HTML class
         changeCurrentSong(newSong);                   // set current song to new song
         curSong = newSong.song_id;                    // store new song's ID to global var
         document.title = newSong.song + ' - TurnTunes'// set HTML tile to song name
@@ -140,7 +140,7 @@ function changeCurrentSong(song) {
 /*******************************************************
   Party UI
 *******************************************************/
-// when document has fully loaded
+// When document has fully loaded
 $(document).ready(function() {
   
   addUser();
@@ -161,9 +161,9 @@ $(document).ready(function() {
       window.open('http://twitter.com/intent/tweet?status=' + text + '+' + url, 'yourWindowName', 'width=600,height=250');
   });
 
-  $('i.copy').tooltip(); // using https://jqueryui.com/tooltip/
+  $('i.copy').tooltip(); // initializes i.copy as a tooltip
 
-  // copy browser url to clipboard when clicked
+  // copy browser url to clipboard when clicked using tooltip
   $('.url-share-button').on('click', function() {
     var $temp = $("<input>");
     $("body").append($temp);
@@ -269,9 +269,8 @@ $('#skip-btn').on('click', function () {
     pushNowPlaying(newSong); // plays next song 
 });
 
-// when on & anywhere on the party.html page
+// clear the search bar and hide the search results when escape key is pressed or you click anywhere else on the page
 $('body').on('click keyup', function(e) { 
-  // if either click or esc key is pressed the search bar will be cleared
   if (e.type === "click" || e.keyCode == 27) { 
     $('.search-input').val("");
     $('.search-result').remove();
